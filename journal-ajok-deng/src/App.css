@@ -1,0 +1,113 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5; /* light neutral background */
+  padding: 20px;
+  color: #333;
+}
+
+.app {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  background: #1976d2;
+  color: white;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #115293;
+}
+
+/* Journal Form */
+.journal-form {
+  background: #e0e3e7; /* soft gray */
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.journal-form input,
+.journal-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.journal-form button {
+  width: 150px;
+  align-self: flex-start;
+  background: #388e3c;
+}
+
+.journal-form button:hover {
+  background: #2e7d32;
+}
+
+/* Journal List */
+.journal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* space between items */
+}
+
+/* Journal Item */
+.journal-item {
+  background: #f8f9fa; /* soft neutral card */
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.journal-item.important {
+  border-left: 5px solid #ff9800;
+}
+
+.journal-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.journal-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.journal-body {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.journal-actions button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.journal-actions button:last-child {
+  background: #d32f2f;
+  color: white;
+}
+
+.journal-actions button:last-child:hover {
+  background: #9a0007;
+}
