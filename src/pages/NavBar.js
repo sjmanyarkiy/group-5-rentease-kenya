@@ -32,19 +32,14 @@ function NavBar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  <NavLink to="/">Home</NavLink>
-                </a>
+                  <NavLink to="/" className="nav-link active" aria-current="page">Home</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <NavLink to="/properties">Properties</NavLink>
-                </a>
+                  <NavLink to="/properties" className="nav-link">Properties</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <NavLink to="/tenants">Tenants</NavLink>
-                </a>
+
+                  <NavLink to="/tenants" className="nav-link">Tenants</NavLink>
               </li>
             </ul>
             <form className="d-flex" role="search">
