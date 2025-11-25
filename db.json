@@ -1,0 +1,201 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "location": "Nairobi",
+      "image": "https://images.unsplash.com/photo-1586105251261-72a756497a11",
+      "rent": 35000,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "status": "vacant",
+      "description": "Modern 2-bedroom apartment in Kilimani with ample parking."
+    },
+    {
+      "id": 2,
+      "location": "Nairobi",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+      "rent": 50000,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "status": "occupied",
+      "description": "Spacious 3-bedroom apartment in Westlands."
+    },
+    {
+      "id": 3,
+      "location": "Kisumu",
+      "image": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+      "rent": 20000,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "status": "vacant",
+      "description": "One-bedroom apartment near Kisumu CBD."
+    },
+    {
+      "id": 4,
+      "location": "Machakos",
+      "image": "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
+      "rent": 18000,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "status": "vacant",
+      "description": "Affordable apartment in Syokimau."
+    },
+    {
+      "id": 5,
+      "location": "Nairobi",
+      "image": "https://images.unsplash.com/photo-1600585154154-5b0df1a1d9b9",
+      "rent": 60000,
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "status": "occupied",
+      "description": "Luxury 4-bedroom townhouse in Lavington."
+    },
+    {
+      "id": 6,
+      "location": "Kisumu",
+      "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+      "rent": 25000,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "status": "vacant",
+      "description": "Newly built 2-bedroom apartment near Lake Victoria."
+    },
+    {
+      "id": 7,
+      "location": "Machakos",
+      "image": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c",
+      "rent": 23000,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "status": "vacant",
+      "description": "2-bedroom modern flat in Athi River."
+    },
+    {
+      "id": 8,
+      "location": "Nairobi",
+      "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb",
+      "rent": 30000,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "status": "vacant",
+      "description": "One-bedroom fully furnished apartment in Upper Hill."
+    },
+    {
+      "id": 9,
+      "location": "Machakos",
+      "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
+      "rent": 15000,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "status": "occupied",
+      "description": "Simple one-bedroom apartment ideal for students."
+    },
+    {
+      "id": 10,
+      "location": "Kisumu",
+      "image": "https://images.unsplash.com/photo-1560448075-bb4caa6bfc2a",
+      "rent": 28000,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "status": "vacant",
+      "description": "3-bedroom home in Milimani Estate, Kisumu."
+    },
+    {
+      "id": 11,
+      "location": "Nairobi",
+      "image": "https://images.unsplash.com/photo-1598928506311-c55dedab70c4",
+      "rent": 27000,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "status": "vacant",
+      "description": "Studio apartment in South B with gym access."
+    },
+    {
+      "id": 12,
+      "location": "Machakos",
+      "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858",
+      "rent": 32000,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "status": "vacant",
+      "description": "Family-friendly 3-bedroom house in Mavoko."
+    }
+  ],
+
+  "bookings": [
+    {
+      "id": 1,
+      "propertyId": 1,
+      "tenantName": "Mary Atieno",
+      "employment": "Teacher",
+      "income": 65000,
+      "moveInDate": "2025-02-10",
+      "emergencyContact": "0712345678",
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "propertyId": 3,
+      "tenantName": "Brian Odhiambo",
+      "employment": "IT Support",
+      "income": 50000,
+      "moveInDate": "2025-03-01",
+      "emergencyContact": "0798765432",
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "propertyId": 4,
+      "tenantName": "Sarah Wambui",
+      "employment": "Nurse",
+      "income": 72000,
+      "moveInDate": "2025-02-15",
+      "emergencyContact": "0788996655",
+      "status": "pending"
+    },
+    {
+      "id": 4,
+      "propertyId": 7,
+      "tenantName": "James Mutiso",
+      "employment": "Accountant",
+      "income": 90000,
+      "moveInDate": "2025-03-05",
+      "emergencyContact": "0711002233",
+      "status": "approved"
+    },
+    {
+      "id": 5,
+      "propertyId": 9,
+      "tenantName": "Grace Nduku",
+      "employment": "Student",
+      "income": 20000,
+      "moveInDate": "2025-01-20",
+      "emergencyContact": "0744556677",
+      "status": "rejected"
+    }
+  ],
+
+  "tenants": [
+    {
+      "id": 1,
+      "name": "John Kamau",
+      "propertyId": 2,
+      "moveInDate": "2025-01-10",
+      "phone": "0712345566"
+    },
+    {
+      "id": 2,
+      "name": "Grace Njeri",
+      "propertyId": 5,
+      "moveInDate": "2025-01-12",
+      "phone": "0703456789"
+    },
+    {
+      "id": 3,
+      "name": "James Mutiso",
+      "propertyId": 7,
+      "moveInDate": "2025-02-20",
+      "phone": "0711002233"
+    }
+  ]
+}
