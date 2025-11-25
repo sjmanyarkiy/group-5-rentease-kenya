@@ -4,15 +4,6 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
   return (
     <>
-      {/* Old Navigation Bar */}
-      {/* <div>
-                <h1>This is the NavBar</h1>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/properties">Properties</NavLink>
-                <NavLink to="/tenants">Tenants</NavLink>
-            </div> */}
-
-      {/* New Navigation Bar */}
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
