@@ -1,19 +1,29 @@
 import PropertyList from './components/PropertyList';
 import Home from './pages/Home';
 import TenantList from './components/TenantList';
+import PropertyCard from './components/PropertyCard';
+import ErrorPage from "./pages/ErrorPage";
 
 const routes = [
     {
         path: "/",
-        element: <Home />
+        element: <Home />,
+        errorElement: <ErrorPage />
     },
     {
         path: "/properties",
-        element: <PropertyList />
+        element: <PropertyList />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: "/properties/:id",
+        element: <PropertyCard />,
+        errorElement: <ErrorPage />
     },
     {
         path: "/tenants",
-        element: <TenantList />
+        element: <TenantList />,
+        errorElement: <ErrorPage />
     }
 
 ]
