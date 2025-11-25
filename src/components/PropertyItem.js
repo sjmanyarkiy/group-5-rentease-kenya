@@ -14,16 +14,18 @@ function PropertyItem({ property }) {
             <h1>{location}</h1>
             <img src={image} />
             <p>{rent}</p>
-        </div> */}       
-  
-            <div className="card" style={{width: "18rem"}}>
-            <img src={image} className="card-img-top" alt="..." />
-            <div className="card-body">
-                <h5 className="card-title">{location}</h5>
-                <p className="card-text">{description}</p>
-                <a href="#" className="btn btn-primary">View property</a>
+        </div> */}  
+            <div className="col">
+                <div className="card" style={{width: "18rem"}}>
+                <img src={image} className="card-img-top" alt="..." />
+                <div className="card-body">
+                    <h5 className="card-title">{location}</h5>
+                    <p className="card-text">{description}</p>
+                    <a href="#" className="btn btn-primary">View property</a>
+                </div>
+                </div>
             </div>
-        </div>
+
 
     </main>
     
