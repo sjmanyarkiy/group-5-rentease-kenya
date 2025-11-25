@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../pages/NavBar';
 import PropertyItem from './PropertyItem';
-import { Oval } from 'react-loader-spinner'
-import { OrbitProgress } from 'react-loading-indicators'
+
 
 
 function PropertyList() {
   
-
+  const [loading, setLoading] = useState(true);
   const [ properties, setProperties ] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3000/properties`)
     .then(res => res.json())
     .then(data => setProperties(data))
-    // .then(data => console.log(data))
-    .catch(error => console.error(error))
-
-  }, [])
+    .then(data => {
+        setTimeout(() => {
+          setProperties(data);
+          setLoading(false);
+        }, 100); 
+      });
+  }, []);
 
   const  displayProperties = properties.map(property => {
      return <PropertyItem key={property.id} property={property}/>
