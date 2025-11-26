@@ -9,7 +9,7 @@ import BookingList from './components/Bookinglist';
 const routes = [
     {
         path: "/",
-        element: <TestHome />,
+        element: <Home />,
         errorElement: <ErrorPage />
     },
     {
