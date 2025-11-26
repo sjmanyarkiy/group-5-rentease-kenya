@@ -16,8 +16,8 @@ function PropertyItem({ property }) {
                 <div className="card-body">
                     <h5 className="card-title">{location}</h5>
                     <p className="card-text">{description}</p>
-                    {/* <a href="#" className="btn btn-primary">View property</a> */}
-                    <Link to={`/tenants/${id}`} className="btn btn-primary">View property</Link>
+                    {/* Navigate to the property details route */}
+                    <Link to={`/properties/${id}`} className="btn btn-primary">View property</Link>
                 </div>
                 </div>
             </div>
