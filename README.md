@@ -1,4 +1,3 @@
-
 # 🏠 RentEase Kenya
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
@@ -52,17 +51,17 @@ RentEase Kenya transforms manual rental processes into a centralized digital sys
 Run the following commands to get the project running locally:
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/sjmanyarkiy/group-5-rentease-kenya.git
 cd group-5-rentease-kenya
 npm install
 npm start
 ```
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open http://localhost:3000
+ to view it in the browser.
 
 ## 🎬 Demo
 
-Live Demo: [https://github.com/sjmanyarkiy/group-5-rentease-kenya](https://github.com/sjmanyarkiy/group-5-rentease-kenya)
+Live Demo: https://github.com/sjmanyarkiy/group-5-rentease-kenya  
 
 ## 🌟 Why RentEase Kenya Stands Out
 
@@ -92,3 +91,4 @@ Scrum Master: **Sandra Manyarkiy**
 
 ## Many thanks to you all
 
+End
