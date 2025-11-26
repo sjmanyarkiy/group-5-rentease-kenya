@@ -1,6 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import NavBar from '../pages/NavBar';
+import { useState } from 'react';
 
 
 
@@ -26,12 +25,7 @@ const BookingList = () => {
   }
 
   return (
-    <>
-    <header>
-      <NavBar />
-    </header>
-    <main>
-      <div>
+    <div>
       <h2>Bookings</h2>
 
       {bookings.length === 0 ? (
@@ -46,8 +40,6 @@ const BookingList = () => {
         </ul>
       )}
     </div>
-    </main>
-    </>
   );
 };
 
