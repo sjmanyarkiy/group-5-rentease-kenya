@@ -22,29 +22,6 @@ RentEase Kenya transforms manual rental processes into a centralized digital sys
 - **React.js**
 - **React Router**
 - **Context API / useState / useEffect**
-# 🏠 RentEase Kenya
-A modern, React–powered rental property management platform built to simplify how **landlords** and **tenants** interact within Kenya’s real estate market.
-
-## 🚀 Overview
-RentEase Kenya transforms manual rental processes into a centralized digital system. Tenants can find homes and apply online, while landlords manage properties and applications efficiently.
-
-## 🎯 Key Features
-
-### 👤 Tenants
-- Browse and filter available rentals.
-- Submit online rental applications.
-- Transparent and fast booking process.
-
-### 🏘️ Landlords
-- Add and manage property listings.
-- Review tenant applications.
-- Approve or reject bookings.
-- Automatic property status updates and tenant record creation.
-
-## 🧩 Tech Stack
-- **React.js**
-- **React Router**
-- **Context API / useState / useEffect**
 - **ExchangeRate-API**
 
 ## 🗂️ Project Structure
