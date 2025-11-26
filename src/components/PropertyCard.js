@@ -12,9 +12,18 @@ function PropertyCard() {
   useEffect(() => {
     fetch(`http://localhost:5000/properties/${id}`)
     .then(res => res.json())
-    .then(data => setProperty(data))
-    .catch(error => console.error('Error fetching property:', error));
+    .then(data => {
+      setProperty(data)
+      setLoading(false)
+    })
+    .catch(error => {
+      console.error('Error fetching property:', error)
+      setLoading(false);
+    });
   }, [id])
+
+    if (loading) return <div>Loading...</div>;
+    if (!property) return <div>Property not found</div>;
 
   return (
     <>
@@ -22,17 +31,39 @@ function PropertyCard() {
         <NavBar />
     </header>
     <main>
-        <div>
-      <h1>This is the property card</h1>
-    </div>
     <div className="card mb-3">
-      <img src={property.image} className="card-img-top" alt="..." />
-      <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
+          <div id="carouselExample" className="carousel slide">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img src={property.image} className="d-block w-100" alt={property.location} style={{height: '400px', objectFit: 'cover'}}/>
+              </div>
+              <div className="carousel-item">
+                <img src={property.image} className="d-block w-100" alt={property.location} style={{height: '400px', objectFit: 'cover'}}/>
+              </div>
+              <div className="carousel-item">
+                <img src={property.image} className="d-block w-100" alt={property.location} style={{height: '400px', objectFit: 'cover'}}/>
+              </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="visually-hidden">Next</span>
+            </button>
+          </div>
+          <div className="card-body">
+            <h5 className="card-title">{property.location}</h5>
+            <p className="card-text">{property.description}</p>
+            <p className="card-text">
+              <strong>Rent:</strong> ${property.rent}<br/>
+              <strong>Bedrooms:</strong> {property.bedrooms}<br/>
+              <strong>Bathrooms:</strong> {property.bathrooms}<br/>
+              <strong>Status:</strong> <span class="badge text-bg-primary">{property.status}</span>
+            </p>
+          </div>
+        </div>
     </main>
 
     
