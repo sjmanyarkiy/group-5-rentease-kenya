@@ -1,5 +1,11 @@
 # 🏠 RentEase Kenya
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+![React](https://img.shields.io/badge/React-17.0.2-blue)
+
+![NPM](https://img.shields.io/badge/npm-11.6.0-orange)
+
 A modern, React–powered rental property management platform built to simplify how **landlords** and **tenants** interact within Kenya’s real estate market.
 
 ## 🚀 Overview
@@ -51,6 +57,12 @@ npm install
 npm start
 ```
 
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## 🎬 Demo
+
+Live Demo: [https://github.com/sjmanyarkiy/group-5-rentease-kenya](https://github.com/sjmanyarkiy/group-5-rentease-kenya)
+
 ## 🌟 Why RentEase Kenya Stands Out
 
 - Built for the Kenyan market
@@ -67,7 +79,7 @@ npm start
 
 ## 👥 Team
 
-### Group 5 – SDF-PT12 Moringa School
+### Group 5 – SDF-PT12 Phase 2 Moringa School
 
 Scrum Master: **Sandra Manyarkiy**
 
@@ -77,6 +89,5 @@ Scrum Master: **Sandra Manyarkiy**
 - Ajok Yai
 - Samuel Emanman
 
-## 📜 License
+## Many thanks to you all
 
-MIT License
