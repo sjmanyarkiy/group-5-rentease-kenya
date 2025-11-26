@@ -7,12 +7,14 @@ function PropertyCard() {
   const { id } = useParams();
 
   const [ property, setProperty ] = useState(null);
+  const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
     fetch(`http://localhost:5000/properties/${id}`)
     .then(res => res.json())
-    .then((data) => setProperty(data))
-  })
+    .then(data => setProperty(data))
+    .catch(error => console.error('Error fetching property:', error));
+  }, [id])
 
   return (
     <>
