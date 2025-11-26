@@ -1,5 +1,6 @@
 import PropertyList from './components/PropertyList';
 import Home from './pages/Home';
+import TestHome from './pages/TestHome';
 import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
@@ -8,7 +9,7 @@ import BookingList from './components/Bookinglist';
 const routes = [
     {
         path: "/",
-        element: <Home />,
+        element: <TestHome />,
         errorElement: <ErrorPage />
     },
     {
