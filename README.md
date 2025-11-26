@@ -62,7 +62,10 @@ npm start
 Group 5 – SDF-PT12 Moringa School
 
 Scrum Master: Sandra Manyarkiy
-
+** Other members:
+- Samuel Emanman
+- Benson Mwangi
+- Ajok Yai
 ## License
 
 MIT
