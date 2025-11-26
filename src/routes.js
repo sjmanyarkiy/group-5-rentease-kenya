@@ -4,7 +4,7 @@ import TestHome from './pages/TestHome';
 import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
-import BookingList from './components/Bookinglist';
+import BookingList from './components/BookingList'; // <-- FIXED
 
 const routes = [
     {
@@ -32,7 +32,6 @@ const routes = [
         element: <BookingList />,
         errorElement: <ErrorPage />
     }
-
-]
+];
 
 export default routes;
