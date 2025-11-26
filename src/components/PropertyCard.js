@@ -31,6 +31,9 @@ function PropertyCard() {
         <NavBar />
     </header>
     <main>
+        <div>
+      <h1>This is the property card</h1>
+    </div>
     <div className="card mb-3">
           <div id="carouselExample" className="carousel slide">
             <div className="carousel-inner">

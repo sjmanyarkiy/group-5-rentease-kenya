@@ -9,7 +9,7 @@ import BookingList from './components/BookingList'; // <-- FIXED
 const routes = [
     {
         path: "/",
-        element: <TestHome />,
+        element: <Home />,
         errorElement: <ErrorPage />
     },
     {
