@@ -56,12 +56,12 @@ cd group-5-rentease-kenya
 npm install
 npm start
 ```
-Open http://localhost:3000
- to view it in the browser.
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## 🎬 Demo
 
-Live Demo: https://github.com/sjmanyarkiy/group-5-rentease-kenya  
+Live Demo: [https://github.com/sjmanyarkiy/group-5-rentease-kenya](https://github.com/sjmanyarkiy/group-5-rentease-kenya)
 
 ## 🌟 Why RentEase Kenya Stands Out
 
@@ -90,5 +90,3 @@ Scrum Master: **Sandra Manyarkiy**
 - Samuel Emanman
 
 ## Many thanks to you all
-
-End
