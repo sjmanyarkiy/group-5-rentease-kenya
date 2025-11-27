@@ -3,6 +3,8 @@ import Home from './pages/Home';
 import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
+import TenantsPage from './pages/TenantsPage';
+
 
 const routes = [
     {
@@ -22,7 +24,7 @@ const routes = [
     },
     {
         path: "/tenants",
-        element: <TenantList />,
+        element: <TenantsPage/>,
         errorElement: <ErrorPage />
     }
 

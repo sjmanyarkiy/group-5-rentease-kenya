@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './pages/Home';
 import TestHome from './pages/TestHome';
+import TenantsPage from './pages/TenantsPage';
 
 function App() {
   return (
