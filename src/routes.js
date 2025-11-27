@@ -5,6 +5,8 @@ import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
 import TenantsPage from './pages/TenantsPage';
 
+import BookingList from './components/BookingList'; // <-- FIXED
+import AddNewForm from './components/AddNewForm';
 
 const routes = [
     {
@@ -24,10 +26,19 @@ const routes = [
     },
     {
         path: "/tenants",
-        element: <TenantsPage/>,
+        element: <TenantPage />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: "/bookings",
+        element: <BookingList />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: "/add-new-form",
+        element: <AddNewForm />,
         errorElement: <ErrorPage />
     }
-
-]
+];
 
 export default routes;

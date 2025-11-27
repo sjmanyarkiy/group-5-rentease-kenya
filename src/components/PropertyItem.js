@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 function PropertyItem({ property }) {
 
     const { id, location, image, rent, bedrooms, bathrooms, status, description } = property
+    console.log(id)
 
 
   return (
@@ -17,7 +18,7 @@ function PropertyItem({ property }) {
                     <h5 className="card-title">{location}</h5>
                     <p className="card-text">{description}</p>
                     {/* <a href="#" className="btn btn-primary">View property</a> */}
-                    <Link to={`/tenants/${id}`} className="btn btn-primary">View property</Link>
+                    <Link to={`/properties/${id}`} className="btn btn-primary">View property</Link>
                 </div>
                 </div>
             </div>

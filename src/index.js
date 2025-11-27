@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import routes from './routes'
-import BaseComponent from 'bootstrap/js/dist/base-component';
+import "font-awesome/css/font-awesome.min.css";
+
 
 const router = createBrowserRouter(routes);
 
