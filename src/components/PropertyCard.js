@@ -10,7 +10,7 @@ function PropertyCard() {
   const [ loading, setLoading ] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/properties/${id}`)
+    fetch(`http://localhost:3000/properties/${id}`)
     .then(res => res.json())
     .then(data => {
       setProperty(data)
@@ -36,17 +36,7 @@ function PropertyCard() {
     </div>
     <div className="card mb-3">
           <div id="carouselExample" className="carousel slide">
-            <div className="carousel-inner">
-              <div className="carousel-item active">
-                <img src={property.image} className="d-block w-100" alt={property.location} style={{height: '400px', objectFit: 'cover'}}/>
-              </div>
-              <div className="carousel-item">
-                <img src={property.image} className="d-block w-100" alt={property.location} style={{height: '400px', objectFit: 'cover'}}/>
-              </div>
-              <div className="carousel-item">
-                <img src={property.image} className="d-block w-100" alt={property.location} style={{height: '400px', objectFit: 'cover'}}/>
-              </div>
-            </div>
+            <img src={property.image} class="img-fluid" alt="..." />
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
               <span className="visually-hidden">Previous</span>

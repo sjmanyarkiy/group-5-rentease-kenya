@@ -13,6 +13,7 @@ const BookingList = () => {
       .then((res) => res.json())
       .then((data) => {
         setBookings(data);
+        console.log(data);
         setLoading(false);
       })
       .catch((err) => {
