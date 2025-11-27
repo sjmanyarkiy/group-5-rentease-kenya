@@ -11,7 +11,7 @@ function Home() {
   const navigate = useNavigate();
 
   function handleSearch() {
-    navigate(`/apartments?location=${searchTerm}`);
+    navigate(`/properties?location=${searchTerm}`);
   }
 
   return (
@@ -27,7 +27,7 @@ function Home() {
             </div>
             <div className="search-bar">
               <input type="text" placeholder="Search Location " value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-              <button onSubmit={handleSearch}>Search</button>
+              <button onClick={handleSearch}>Search</button>
             </div>
           </div>
           {/* <div className="landing-image">
