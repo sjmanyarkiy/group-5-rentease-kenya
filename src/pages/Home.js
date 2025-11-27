@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../pages/NavBar";
 import landingImage from "../img/landing.jpg";
 import "font-awesome/css/font-awesome.min.css";
 import Apartment from "../components/Home/Apartment";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  function handleSearch() {
+    navigate(`/apartments?location=${searchTerm}`);
+  }
+
   return (
     <>
       <header>
@@ -17,8 +26,8 @@ function Home() {
               <p>Find Your New Modern Apartment</p>
             </div>
             <div className="search-bar">
-              <input type="text" placeholder="Search Location " />
-              <button>Search</button>
+              <input type="text" placeholder="Search Location " value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+              <button onSubmit={handleSearch}>Search</button>
             </div>
           </div>
           {/* <div className="landing-image">
