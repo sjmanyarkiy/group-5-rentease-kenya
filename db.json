@@ -121,7 +121,6 @@
       "description": "Family-friendly 3-bedroom house in Mavoko."
     }
   ],
-
   "bookings": [
     {
       "id": 1,
@@ -174,7 +173,6 @@
       "status": "rejected"
     }
   ],
-
   "tenants": [
     {
       "id": 1,
@@ -196,6 +194,25 @@
       "propertyId": 7,
       "moveInDate": "2025-02-20",
       "phone": "0711002233"
+    },
+    {
+      "id": 4,
+      "name": "Jane Doe",
+      "phone": "073213213123",
+      "email": "janedoe@gmail.com",
+      "govtIDNo": "3423423432",
+      "employmentStatus": "Employed",
+      "employerName": "ABC Limited",
+      "moveInDate": "2025-10-31",
+      "tenantPhoto": null,
+      "propertyId": "2",
+      "numberOfBedrooms": "4",
+      "country": "Kenya",
+      "county": "Nairobi",
+      "city": "nairobi",
+      "subCounty": "",
+      "sublocation": "",
+      "estate": ""
     }
   ]
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TenantForm from '../components/TenantForm';
 import TenantList from '../components/TenantList';
+import NavBar from './NavBar';
 
 function TenantsPage() {
   const [tenants, setTenants] = useState([]);
@@ -47,11 +48,19 @@ function TenantsPage() {
   };
 
   return (
-    <div className="container mt-4">
-      <TenantForm tenant={editingTenant} onSubmit={handleAddOrUpdateTenant} existingTenants={tenants} />
-      <hr />
-      <TenantList tenants={tenants} onEdit={handleEdit} onDelete={handleDelete} />
-    </div>
+   <>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <div className="container mt-4">
+        
+        <TenantForm tenant={editingTenant} onSubmit={handleAddOrUpdateTenant} existingTenants={tenants} />
+        <hr />
+        <TenantList tenants={tenants} onEdit={handleEdit} onDelete={handleDelete} />
+      </div>
+      </main>
+    </>
   );
 }
 
