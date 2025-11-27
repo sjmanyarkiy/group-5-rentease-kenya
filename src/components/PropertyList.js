@@ -5,14 +5,15 @@ import { Oval } from "react-loader-spinner";
 
 function PropertyList() {
   const [properties, setProperties] = useState([]);
+  const API = process.env.REACT_APP_API_URL || 'http://localhost:5001'
 
   useEffect(() => {
-    fetch(`http://localhost:3000/properties`)
+    fetch(`${API}/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       // .then(data => console.log(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [API]);
 
   const displayProperties = properties.map((property) => {
     return <PropertyItem key={property.id} property={property} />;

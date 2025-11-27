@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import NavBar from '../pages/NavBar'
+import { useBookings } from '../context/BookingsContext'
 
 function PropertyCard() {
   const { id } = useParams()
@@ -15,11 +16,13 @@ function PropertyCard() {
   const [endDate, setEndDate] = useState('')
   const [message, setMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const { addBooking } = useBookings()
 
   useEffect(() => {
     if (!id) return
     setLoading(true)
-    fetch(`http://localhost:3000/properties/${id}`)
+    const API = process.env.REACT_APP_API_URL || 'http://localhost:5001'
+    fetch(`${API}/properties/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch property')
         return res.json()
@@ -48,7 +51,9 @@ function PropertyCard() {
       createdAt: new Date().toISOString(),
     }
 
-    fetch('http://localhost:3000/bookings', {
+    const API = process.env.REACT_APP_API_URL || 'http://localhost:5001'
+
+    fetch(`${API}/bookings`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(booking),
@@ -57,7 +62,15 @@ function PropertyCard() {
         if (!res.ok) throw new Error('Booking failed')
         return res.json()
       })
-      .then(() => {
+      .then((data) => {
+        // update global bookings state so UI can re-render
+        try {
+          addBooking(data)
+        } catch (err) {
+          // fall back: still set submitted if provider not available
+          console.warn('addBooking not available', err)
+        }
+
         setSubmitted(true)
         // clear form
         setName('')

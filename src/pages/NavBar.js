@@ -37,10 +37,13 @@ function NavBar() {
               <li className="nav-item">
                   <NavLink to="/properties" className="nav-link">Properties</NavLink>
               </li>
-              <li className="nav-item">
+                <li className="nav-item">
 
                   <NavLink to="/tenants" className="nav-link">Tenants</NavLink>
-              </li>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/bookings" className="nav-link">Bookings</NavLink>
+                </li>
             </ul>
             <form className="d-flex" role="search">
               <input
