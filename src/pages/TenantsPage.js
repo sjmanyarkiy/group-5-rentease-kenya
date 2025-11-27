@@ -1,79 +1,57 @@
-// TenantsPage.js
-import React, { useState } from "react";
-import NavBar from "./NavBar";
-import TenantForm from "../components/TenantForm";
-import TenantList from "../components/TenantList";
+import React, { useState, useEffect } from 'react';
+import TenantForm from '../components/TenantForm';
+import TenantList from '../components/TenantList';
 
 function TenantsPage() {
-  // Sample initial tenants
-  const [tenants, setTenants] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      phone: "0712345678",
-      employmentStatus: "Employed",
-      moveInDate: "2025-11-01",
-      country: "Kenya",
-      county: "Nairobi",
-      city: "Nairobi",
-      subCounty: "Westlands",
-      sublocation: "Riverside",
-      estate: "Sunset Estate",
-      propertyId: 101,
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      phone: "0723456789",
-      employmentStatus: "Self-Employed",
-      moveInDate: "2025-10-15",
-      country: "Kenya",
-      county: "Machakos",
-      city: "Machakos",
-      subCounty: "Machakos Town",
-      sublocation: "Central",
-      estate: "Greenview Estate",
-      propertyId: 102,
-    },
-  ]);
-
+  const [tenants, setTenants] = useState([]);
   const [editingTenant, setEditingTenant] = useState(null);
 
-  // Add or update tenant
-  const handleFormSubmit = (tenantData) => {
+  // Load tenants from JSON server
+  useEffect(() => {
+    fetch("http://localhost:5000/tenants")
+      .then(res => res.json())
+      .then(data => setTenants(data))
+      .catch(err => console.error("Failed to load tenants", err));
+  }, []);
+
+  const handleAddOrUpdateTenant = (tenantData) => {
     if (editingTenant) {
-      // Update existing tenant
-      setTenants((prev) =>
-        prev.map((t) => (t.id === editingTenant.id ? { ...tenantData, id: t.id } : t))
-      );
-      setEditingTenant(null);
+      // Update tenant
+      fetch(`http://localhost:5000/tenants/${editingTenant.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tenantData),
+      })
+      .then(res => res.json())
+      .then(updated => {
+        setTenants(tenants.map(t => t.id === editingTenant.id ? updated : t));
+        setEditingTenant(null);
+      });
     } else {
       // Add new tenant
-      const newTenant = { ...tenantData, id: Date.now() }; // simple unique ID
-      setTenants((prev) => [...prev, newTenant]);
+      fetch("http://localhost:5000/tenants", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tenantData),
+      })
+      .then(res => res.json())
+      .then(newTenant => setTenants([...tenants, newTenant]));
     }
   };
 
-  // Edit tenant
-  const handleEdit = (tenant) => {
-    setEditingTenant(tenant);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // scroll to form
-  };
+  const handleEdit = (tenant) => setEditingTenant(tenant);
 
-  // Delete tenant
   const handleDelete = (id) => {
-    setTenants((prev) => prev.filter((t) => t.id !== id));
+    fetch(`http://localhost:5000/tenants/${id}`, { method: 'DELETE' })
+      .then(() => setTenants(tenants.filter(t => t.id !== id)));
   };
 
   return (
-    <>
-      <NavBar />
-      <div className="container mt-4">
-        <TenantForm tenant={editingTenant} onSubmit={handleFormSubmit} />
-        <hr />
-        <TenantList tenants={tenants} onEdit={handleEdit} onDelete={handleDelete} />
-      </div>
-    </>
+    <div className="container mt-4">
+      <TenantForm tenant={editingTenant} onSubmit={handleAddOrUpdateTenant} existingTenants={tenants} />
+      <hr />
+      <TenantList tenants={tenants} onEdit={handleEdit} onDelete={handleDelete} />
+    </div>
   );
 }
 
