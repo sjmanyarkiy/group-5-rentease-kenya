@@ -21,7 +21,8 @@ function PropertyCard() {
   useEffect(() => {
     if (!id) return
     setLoading(true)
-    const API = process.env.REACT_APP_API_URL || 'http://localhost:5001'
+    // Default API to localhost:3000 unless overridden by REACT_APP_API_URL
+    const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
     fetch(`${API}/properties/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch property')
@@ -51,7 +52,7 @@ function PropertyCard() {
       createdAt: new Date().toISOString(),
     }
 
-    const API = process.env.REACT_APP_API_URL || 'http://localhost:5001'
+    const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
 
     fetch(`${API}/bookings`, {
       method: 'POST',

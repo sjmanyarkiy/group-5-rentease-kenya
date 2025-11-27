@@ -5,7 +5,8 @@ import { Oval } from "react-loader-spinner";
 
 function PropertyList() {
   const [properties, setProperties] = useState([]);
-  const API = process.env.REACT_APP_API_URL || 'http://localhost:5001'
+  // Default to localhost:3000 if REACT_APP_API_URL is not set
+  const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
 
   useEffect(() => {
     fetch(`${API}/properties`)

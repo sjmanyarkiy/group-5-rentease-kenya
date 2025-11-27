@@ -3,7 +3,8 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 const BookingsContext = createContext()
 
 export function BookingsProvider({ children }) {
-  const API = process.env.REACT_APP_API_URL || 'http://localhost:5001'
+  // Default to localhost:3000 if REACT_APP_API_URL is not provided
+  const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
   const [bookings, setBookings] = useState([])
   const [loading, setLoading] = useState(true)
 
