@@ -26,7 +26,7 @@ const routes = [
     },
     {
         path: "/tenants",
-        element: <TenantPage />,
+        element: <TenantsPage />,
         errorElement: <ErrorPage />
     },
     {
