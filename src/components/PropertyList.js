@@ -12,7 +12,7 @@ function PropertyList() {
   const locationFilter = queryParams.get("location")?.toLowerCase() || "";
 
   useEffect(() => {
-    fetch(`http://localhost:3000/properties`)
+    fetch(`http://localhost:5000/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       // .then(data => console.log(data))
