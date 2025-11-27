@@ -9,7 +9,8 @@ const PropertyDetail = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/properties/${id}`);
+        // Make sure this matches the port your JSON server is running on
+        const res = await axios.get(`http://localhost:3000/properties/${id}`);
         setProperty(res.data);
       } catch (err) {
         console.error(err);
@@ -22,17 +23,14 @@ const PropertyDetail = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2>{property.name}</h2>
+      <h2>{property.location}</h2>
       <img
         src={property.image}
-        alt={property.name}
+        alt={property.location}
         style={{ width: "400px", borderRadius: "8px" }}
       />
       <p>
-        <strong>Location:</strong> {property.location}
-      </p>
-      <p>
-        <strong>Rent:</strong> {property.rent}
+        <strong>Rent:</strong> KES {property.rent.toLocaleString()}
       </p>
       <p>
         <strong>Bedrooms:</strong> {property.bedrooms}
@@ -53,7 +51,7 @@ const PropertyDetail = () => {
             fontWeight: "bold",
           }}
         >
-          {property.status}
+          {property.status.charAt(0).toUpperCase() + property.status.slice(1)}
         </span>
       </p>
       <p>{property.description}</p>

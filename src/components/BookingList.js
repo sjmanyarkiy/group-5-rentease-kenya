@@ -1,88 +1,88 @@
-// BookingList.js
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 const BookingList = () => {
   const [bookings, setBookings] = useState([]);
   const [properties, setProperties] = useState([]);
-  const [filter, setFilter] = useState("all");
-  const [message, setMessage] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("all");
 
+  // Fetch bookings and properties
   useEffect(() => {
-    fetchBookings();
-    fetchProperties();
+    fetch("http://localhost:3000/bookings")
+      .then((res) => res.json())
+      .then((data) => setBookings(data));
+
+    fetch("http://localhost:3000/properties")
+      .then((res) => res.json())
+      .then((data) => setProperties(data));
   }, []);
 
-  // Fetch bookings from backend
-  const fetchBookings = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/bookings");
-      setBookings(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // Fetch properties from backend
-  const fetchProperties = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/properties");
-      setProperties(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // Map propertyId to property name
+  // Get property location
   const getPropertyName = (id) => {
-    const prop = properties.find((p) => Number(p.id) === Number(id));
-    return prop ? prop.name : "Unknown";
+    const prop = properties.find((p) => String(p.id) === String(id));
+    return prop ? prop.location : "Unknown";
   };
 
-  // Handle approve/reject action
-  const handleUpdateStatus = async (id, status) => {
-    try {
-      await axios.patch(`http://localhost:5000/bookings/${id}`, { status });
+  // Handle Approve
+  const handleApprove = async (booking) => {
+    const res = await fetch(`http://localhost:3000/bookings/${booking.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "approved" }),
+    });
+    if (res.ok) {
       setBookings((prev) =>
-        prev.map((b) => (b.id === id ? { ...b, status } : b))
+        prev.map((b) =>
+          b.id === booking.id ? { ...b, status: "approved" } : b
+        )
       );
-      setMessage(`Booking ${status} successfully!`);
-      setTimeout(() => setMessage(""), 3000);
-
-      // Optional: Tenant creation/property update if approved
-      if (status === "approved") {
-        console.log(`Tenant creation and property update for booking ${id}`);
-      }
-    } catch (err) {
-      console.error(err);
+      alert(`${booking.tenantName} approved!`);
     }
   };
 
-  // Apply filter
-  const filteredBookings =
-    filter === "all" ? bookings : bookings.filter((b) => b.status === filter);
+  // Handle Reject
+  const handleReject = async (booking) => {
+    const res = await fetch(`http://localhost:3000/bookings/${booking.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: "rejected" }),
+    });
+    if (res.ok) {
+      setBookings((prev) =>
+        prev.map((b) =>
+          b.id === booking.id ? { ...b, status: "rejected" } : b
+        )
+      );
+      alert(`${booking.tenantName} rejected!`);
+    }
+  };
+
+  // Filter bookings
+  const filteredBookings = bookings.filter((b) =>
+    selectedStatus === "all"
+      ? true
+      : b.status.toLowerCase() === selectedStatus.toLowerCase()
+  );
 
   return (
     <div style={{ padding: "20px" }}>
       <h2>Bookings</h2>
 
-      {message && <div style={messageStyle}>{message}</div>}
-
-      {/* Filters */}
+      {/* Status Filter Buttons */}
       <div style={{ marginBottom: "15px" }}>
         {["all", "pending", "approved", "rejected"].map((status) => (
           <button
             key={status}
-            onClick={() => setFilter(status)}
+            onClick={() => setSelectedStatus(status)}
             style={{
               marginRight: "10px",
-              padding: "5px 15px",
+              padding: "5px 10px",
+              backgroundColor:
+                selectedStatus === status ? "#007bff" : "#e0e0e0",
+              color: selectedStatus === status ? "white" : "black",
+              border: "none",
+              borderRadius: "4px",
               cursor: "pointer",
-              backgroundColor: filter === status ? "#2196F3" : "#f4f4f4",
-              color: filter === status ? "white" : "black",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
             }}
           >
             {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -90,108 +90,95 @@ const BookingList = () => {
         ))}
       </div>
 
-      {/* Booking List */}
-      <div style={{ border: "1px solid #ccc", borderRadius: "8px" }}>
-        {filteredBookings.map((booking) => (
-          <div
-            key={booking.id}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "10px",
-              borderBottom: "1px solid #ccc",
-            }}
-          >
-            <div>
-              <strong>{booking.tenantName}</strong> –{" "}
-              <Link
-                to={`/properties/${booking.propertyId}`}
-                style={{ textDecoration: "underline", color: "#2196F3" }}
-              >
-                {getPropertyName(booking.propertyId)}
-              </Link>
-            </div>
-            <div>
-              <span
-                style={{
-                  ...statusStyle,
-                  ...getStatusColor(booking.status),
-                  marginRight: "10px",
-                }}
-              >
-                {booking.status}
-              </span>
-              {booking.status === "pending" ? (
-                <>
+      {/* Bookings Table */}
+      <table style={{ borderCollapse: "collapse", width: "100%" }}>
+        <thead>
+          <tr>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Tenant</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Property</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Status</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {properties.length === 0 ? (
+            <tr>
+              <td colSpan="4" style={{ padding: "8px", textAlign: "center" }}>
+                Loading properties...
+              </td>
+            </tr>
+          ) : filteredBookings.length === 0 ? (
+            <tr>
+              <td colSpan="4" style={{ padding: "8px", textAlign: "center" }}>
+                No bookings found
+              </td>
+            </tr>
+          ) : (
+            filteredBookings.map((b) => (
+              <tr key={b.id}>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {b.tenantName}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {/* Link to PropertyDetail page */}
+                  <Link
+                    to={`/properties/${b.propertyId}`}
+                    style={{ textDecoration: "none", color: "#007bff" }}
+                  >
+                    {getPropertyName(b.propertyId)}
+                  </Link>
+                </td>
+                <td
+                  style={{
+                    border: "1px solid #ddd",
+                    padding: "8px",
+                    fontWeight: "bold",
+                    color:
+                      b.status === "approved"
+                        ? "green"
+                        : b.status === "rejected"
+                        ? "red"
+                        : "orange",
+                  }}
+                >
+                  {b.status.charAt(0).toUpperCase() + b.status.slice(1)}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                   <button
-                    style={buttonStyleApprove}
-                    onClick={() =>
-                      handleUpdateStatus(booking.id, "approved")
-                    }
+                    onClick={() => handleApprove(b)}
+                    disabled={b.status !== "pending"}
+                    style={{
+                      marginRight: "10px",
+                      padding: "5px 10px",
+                      backgroundColor:
+                        b.status === "approved" ? "green" : "#e0ffe0",
+                      border: "1px solid green",
+                      cursor: b.status === "pending" ? "pointer" : "not-allowed",
+                    }}
                   >
                     Approve
                   </button>
                   <button
-                    style={buttonStyleReject}
-                    onClick={() =>
-                      handleUpdateStatus(booking.id, "rejected")
-                    }
+                    onClick={() => handleReject(b)}
+                    disabled={b.status !== "pending"}
+                    style={{
+                      padding: "5px 10px",
+                      backgroundColor:
+                        b.status === "rejected" ? "red" : "#ffe0e0",
+                      border: "1px solid red",
+                      cursor: b.status === "pending" ? "pointer" : "not-allowed",
+                    }}
                   >
                     Reject
                   </button>
-                </>
-              ) : (
-                <button style={buttonStyleView}>View</button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
     </div>
   );
-};
-
-// Styles
-const buttonStyleApprove = {
-  backgroundColor: "#4CAF50",
-  color: "white",
-  border: "none",
-  padding: "5px 10px",
-  marginRight: "5px",
-  cursor: "pointer",
-};
-const buttonStyleReject = {
-  backgroundColor: "#f44336",
-  color: "white",
-  border: "none",
-  padding: "5px 10px",
-  cursor: "pointer",
-};
-const buttonStyleView = {
-  backgroundColor: "#2196F3",
-  color: "white",
-  border: "none",
-  padding: "5px 10px",
-  cursor: "pointer",
-};
-const statusStyle = {
-  padding: "5px 10px",
-  borderRadius: "5px",
-  color: "white",
-  textTransform: "capitalize",
-};
-const getStatusColor = (status) => ({
-  approved: { backgroundColor: "#4CAF50" },
-  pending: { backgroundColor: "#FF9800" },
-  rejected: { backgroundColor: "#f44336" },
-}[status] || { backgroundColor: "#777" });
-const messageStyle = {
-  marginBottom: "10px",
-  padding: "8px",
-  backgroundColor: "#d4edda",
-  color: "#155724",
-  borderRadius: "5px",
-};
+}
 
 export default BookingList;
