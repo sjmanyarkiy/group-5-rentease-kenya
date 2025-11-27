@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../pages/NavBar'
 import { useParams } from 'react-router-dom';
 
+
 function PropertyCard() {
 
   const { id } = useParams();

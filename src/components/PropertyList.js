@@ -2,21 +2,32 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../pages/NavBar";
 import PropertyItem from "./PropertyItem";
 import { Oval } from "react-loader-spinner";
+import { useLocation } from "react-router-dom";
 
 function PropertyList() {
   const [properties, setProperties] = useState([]);
 
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const locationFilter = queryParams.get("location")?.toLowerCase() || "";
+
   useEffect(() => {
-    fetch(`http://localhost:3000/properties`)
+    fetch(`http://localhost:5000/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       // .then(data => console.log(data))
       .catch((error) => console.error(error));
   }, []);
 
-  const displayProperties = properties.map((property) => {
-    return <PropertyItem key={property.id} property={property} />;
-  });
+  const filteredProperties = properties.filter((property) =>
+  property.location.toLowerCase().includes(locationFilter)
+  );
+
+  const displayProperties = filteredProperties.map((property) => (
+    <PropertyItem key={property.id} property={property} />
+  ));
+
+
 
   return (
     <>

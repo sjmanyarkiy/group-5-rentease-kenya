@@ -2,18 +2,18 @@
   "properties": [
     {
       "id": "1",
-      "name": "Pyramid Villa",
       "location": "Nairobi",
-      "image": "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "image": "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "rent": 35000,
       "bedrooms": 2,
       "bathrooms": 1,
       "status": "vacant",
-      "description": "Modern 2-bedroom apartment in Kilimani with ample parking."
+      "description": "Modern 2-bedroom apartment in Kilimani with ample parking.",
+      "occupied": true,
+      "tenantId": "daec"
     },
     {
       "id": "2",
-      "name": "Westlands Apartment",
       "location": "Nairobi",
       "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
       "rent": 50000,
@@ -24,9 +24,8 @@
     },
     {
       "id": "3",
-      "name": "Kisumu One-Bedroom",
       "location": "Kisumu",
-      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "image": "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "rent": 20000,
       "bedrooms": 1,
       "bathrooms": 1,
@@ -35,20 +34,18 @@
     },
     {
       "id": "4",
-      "name": "Syokimau Apartment",
       "location": "Machakos",
       "image": "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
       "rent": 18000,
       "bedrooms": 1,
       "bathrooms": 1,
-      "status": "occupied",
+      "status": "vacant",
       "description": "Affordable apartment in Syokimau."
     },
     {
       "id": "5",
-      "name": "Lavington Townhouse",
       "location": "Nairobi",
-      "image": "https://plus.unsplash.com/premium_photo-1676321046262-4978a752fb15?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "image": "https://plus.unsplash.com/premium_photo-1676321046262-4978a752fb15?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "rent": 60000,
       "bedrooms": 4,
       "bathrooms": 3,
@@ -57,7 +54,6 @@
     },
     {
       "id": "6",
-      "name": "Lake Victoria Apartment",
       "location": "Kisumu",
       "image": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
       "rent": 25000,
@@ -68,7 +64,6 @@
     },
     {
       "id": "7",
-      "name": "Athi River Flat",
       "location": "Machakos",
       "image": "https://images.unsplash.com/photo-1572120360610-d971b9d7767c",
       "rent": 23000,
@@ -79,7 +74,6 @@
     },
     {
       "id": "8",
-      "name": "Upper Hill Studio",
       "location": "Nairobi",
       "image": "https://images.unsplash.com/photo-1554995207-c18c203602cb",
       "rent": 30000,
@@ -90,7 +84,6 @@
     },
     {
       "id": "9",
-      "name": "Machakos Student Apartment",
       "location": "Machakos",
       "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be",
       "rent": 15000,
@@ -101,9 +94,8 @@
     },
     {
       "id": "10",
-      "name": "Milimani 3-Bedroom",
       "location": "Kisumu",
-      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1680&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1680&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "rent": 28000,
       "bedrooms": 3,
       "bathrooms": 2,
@@ -112,9 +104,8 @@
     },
     {
       "id": "11",
-      "name": "South B Studio",
       "location": "Nairobi",
-      "image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "rent": 27000,
       "bedrooms": 1,
       "bathrooms": 1,
@@ -123,7 +114,6 @@
     },
     {
       "id": "12",
-      "name": "Mavoko Family House",
       "location": "Machakos",
       "image": "https://images.unsplash.com/photo-1484154218962-a197022b5858",
       "rent": 32000,
@@ -152,7 +142,7 @@
       "income": 50000,
       "moveInDate": "2025-03-01",
       "emergencyContact": "0798765432",
-      "status": "approved"
+      "status": "pending"
     },
     {
       "id": "3",
@@ -162,7 +152,7 @@
       "income": 72000,
       "moveInDate": "2025-02-15",
       "emergencyContact": "0788996655",
-      "status": "approved"
+      "status": "pending"
     },
     {
       "id": "4",
@@ -211,13 +201,6 @@
       "id": "daec",
       "name": "Mary Atieno",
       "propertyId": 1
-    },
-    {
-      "id": "a9ea",
-      "name": "Sarah Wambui",
-      "propertyId": 4,
-      "moveInDate": "2025-02-15",
-      "phone": "0788996655"
     }
   ]
 }
