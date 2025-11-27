@@ -1,5 +1,5 @@
 import React from 'react'
-import Bookinglist from './Bookinglist'
+// import Bookinglist from './Bookinglist'
 
 
 const Dashboard = () =>{
