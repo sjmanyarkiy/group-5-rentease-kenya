@@ -1,6 +1,5 @@
 import PropertyList from './components/PropertyList';
 import Home from './pages/Home';
-import TestHome from './pages/TestHome';
 import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
