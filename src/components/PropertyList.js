@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../pages/NavBar";
 import PropertyItem from "./PropertyItem";
+import AddPropertyForm from "./AddPropertyForm";
 import { Oval } from "react-loader-spinner";
 
 function PropertyList() {
@@ -16,6 +17,11 @@ function PropertyList() {
       .catch((error) => console.error(error));
   }, [API]);
 
+  function handleAddProperty(newProperty) {
+    // keep local state in sync after successful POST from AddPropertyForm
+    setProperties((prev) => [...prev, newProperty])
+  }
+
   const displayProperties = properties.map((property) => {
     return <PropertyItem key={property.id} property={property} />;
   });
@@ -28,8 +34,11 @@ function PropertyList() {
       {/* Loader */}
       {}
       <main>
-        <div>
+        <div className="d-flex justify-content-between align-items-center">
           <h1>This is the property list</h1>
+        </div>
+        <div className="mt-3">
+          <AddPropertyForm onAdd={handleAddProperty} />
         </div>
         {properties.length === 0 ? (
           <div
