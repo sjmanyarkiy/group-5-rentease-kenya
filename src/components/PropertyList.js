@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../pages/NavBar";
 import PropertyItem from "./PropertyItem";
+import AddPropertyForm from "./AddPropertyForm";
 import { Oval } from "react-loader-spinner";
 import { useLocation } from "react-router-dom";
 
 function PropertyList() {
   const [properties, setProperties] = useState([]);
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const locationFilter = queryParams.get("location")?.toLowerCase() || "";
+  // Default to localhost:3000 if REACT_APP_API_URL is not set
+  const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
+  // derive location filter from URL query param `location`, e.g. /properties?location=nairobi
+  const { search } = useLocation()
+  const params = new URLSearchParams(search)
+  const locationFilter = (params.get('location') || '').toLowerCase()
 
   useEffect(() => {
-    fetch(`http://localhost:5000/properties`)
+    fetch(`${API}/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       // .then(data => console.log(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [API]);
+
+  function handleAddProperty(newProperty) {
+    // keep local state in sync after successful POST from AddPropertyForm
+    setProperties((prev) => [...prev, newProperty])
+  }
 
   const filteredProperties = properties.filter((property) =>
-  property.location.toLowerCase().includes(locationFilter)
+    (property.location || '').toLowerCase().includes(locationFilter)
   );
 
   const displayProperties = filteredProperties.map((property) => (
@@ -37,8 +45,11 @@ function PropertyList() {
       {/* Loader */}
       {}
       <main>
-        <div>
+        <div className="d-flex justify-content-between align-items-center">
           <h1>This is the property list</h1>
+        </div>
+        <div className="mt-3">
+          <AddPropertyForm onAdd={handleAddProperty} />
         </div>
         {properties.length === 0 ? (
           <div

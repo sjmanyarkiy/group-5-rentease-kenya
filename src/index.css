@@ -14,13 +14,13 @@ code {
     monospace;
 } */
 
-:root {
-	--primaryColor: #ffff00;
-	--textColor: #212f3d;
+/* :root {
+	--primaryColor: rgba(0, 0, 255, 0.987);
+	--textColor: white;
 	--mainTransition: all 0.3s ease-in-out;
 	--mainBack: #d7dbdd;
 	--mainShadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
+} */
 * {
 	margin: 0;
 	padding: 0;
@@ -38,11 +38,12 @@ body {
 /* template starts here */
 
 :root {
-	--primaryColor: #ffff00;
-	--textColor: #212f3d;
+	--primaryColor: rgb(0, 0, 255);
+	--textColor: white;
 	--mainTransition: all 0.3s ease-in-out;
 	--mainBack: #d7dbdd;
 	--mainShadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 60%;
 }
 * {
 	margin: 0;
@@ -155,7 +156,7 @@ nav {
 .landing-image {
 	grid-column: 2 / span 8;
 	grid-row: 1 / span 6;
-	background-color: brown;
+	background-color: blue;
 }
 .landing-image img {
 	width: 100%;
@@ -192,6 +193,7 @@ nav {
 	background: var(--primaryColor);
 	border: none;
 	border-radius: 0 5px 5px 0;
+	color: white;
 }
 /* END HEADER STYLING */
 
@@ -717,9 +719,11 @@ footer {
 	.contact-info {
 		display: flex;
 		flex-direction: column;
+		color: white;
 	}
 	.contact-info > div p {
 		font-size: 1rem;
+		color: white;
 	}
 	.contact-info > div i {
 		color: #fff;

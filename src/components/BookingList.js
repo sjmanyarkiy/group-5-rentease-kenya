@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../pages/NavBar";
 
 const BookingList = () => {
   const [bookings, setBookings] = useState([]);
@@ -8,11 +9,11 @@ const BookingList = () => {
 
   // Fetch bookings and properties
   useEffect(() => {
-    fetch("http://localhost:3000/bookings")
+    fetch("http://localhost:5000/bookings")
       .then((res) => res.json())
       .then((data) => setBookings(data));
 
-    fetch("http://localhost:3000/properties")
+    fetch("http://localhost:5000/properties")
       .then((res) => res.json())
       .then((data) => setProperties(data));
   }, []);
@@ -25,7 +26,7 @@ const BookingList = () => {
 
   // Handle Approve
   const handleApprove = async (booking) => {
-    const res = await fetch(`http://localhost:3000/bookings/${booking.id}`, {
+    const res = await fetch(`http://localhost:5000/bookings/${booking.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "approved" }),
@@ -42,7 +43,7 @@ const BookingList = () => {
 
   // Handle Reject
   const handleReject = async (booking) => {
-    const res = await fetch(`http://localhost:3000/bookings/${booking.id}`, {
+    const res = await fetch(`http://localhost:5000/bookings/${booking.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "rejected" }),
@@ -65,7 +66,12 @@ const BookingList = () => {
   );
 
   return (
-    <div style={{ padding: "20px" }}>
+    <>
+    <header>
+      <NavBar />
+    </header>
+    <main>
+      <div style={{ padding: "20px" }}>
       <h2>Bookings</h2>
 
       {/* Status Filter Buttons */}
@@ -178,6 +184,8 @@ const BookingList = () => {
         </tbody>
       </table>
     </div>
+    </main>
+    </>
   );
 }
 

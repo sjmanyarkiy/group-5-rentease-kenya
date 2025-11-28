@@ -2,7 +2,9 @@ import React from "react";
 
 function TenantList({ tenants = [], onEdit, onDelete }) {
   return (
-    <div className="row">
+    <>
+    <main>
+      <div className="row">
       {tenants.length === 0 ? (
         <p className="text-center">No tenants found.</p>
       ) : (
@@ -31,6 +33,8 @@ function TenantList({ tenants = [], onEdit, onDelete }) {
         ))
       )}
     </div>
+    </main>
+    </>
   );
 }
 
