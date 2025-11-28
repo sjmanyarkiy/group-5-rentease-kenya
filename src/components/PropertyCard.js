@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react'
-<<<<<<< HEAD
 import { useParams } from 'react-router-dom'
 import NavBar from '../pages/NavBar'
 import { useBookings } from '../context/BookingsContext'
@@ -107,34 +105,6 @@ function PropertyCard() {
   )
 
   if (!property) return null
-=======
-import NavBar from '../pages/NavBar'
-import { useParams } from 'react-router-dom';
-
-
-function PropertyCard() {
-
-  const { id } = useParams();
-
-  const [ property, setProperty ] = useState(null);
-  const [ loading, setLoading ] = useState(true);
-
-  useEffect(() => {
-    fetch(`http://localhost:3000/properties/${id}`)
-    .then(res => res.json())
-    .then(data => {
-      setProperty(data)
-      setLoading(false)
-    })
-    .catch(error => {
-      console.error('Error fetching property:', error)
-      setLoading(false);
-    });
-  }, [id])
-
-    if (loading) return <div>Loading...</div>;
-    if (!property) return <div>Property not found</div>;
->>>>>>> origin/master
 
   return (
     <>
