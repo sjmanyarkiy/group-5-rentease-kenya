@@ -31,20 +31,6 @@ function Home() {
       <header>
         <NavBar />
       </header>
-<<<<<<< HEAD
-      <main className="container mt-4">
-        <div className="p-4 bg-light rounded"> 
-          <h1 className="mb-3">Welcome to RentEase</h1>
-          <p className="lead">A simple property management frontend used with a json-server backend. Use the links below to explore data and manage listings.</p>
-
-          <div className="d-flex gap-2 mt-3">
-            <SafeLink to="/properties" className="btn btn-primary">Browse Properties</SafeLink>
-            <SafeLink to="/bookings" className="btn btn-outline-secondary">Bookings</SafeLink>
-            <SafeLink to="/tenants" className="btn btn-outline-secondary">Tenants</SafeLink>
-          </div>
-        </div>
-      </main>
-=======
       <main>
         <div className="header" id="header">
           <div className="landing-text">
@@ -53,12 +39,12 @@ function Home() {
             </div>
             <div className="search-bar">
               <input type="text" placeholder="Search Location " value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-              <button type="button" class="btn-primary" onClick={handleSearch}>Search</button>
+              <button type="button" className="btn-primary" onClick={handleSearch}>Search</button>
             </div>
           </div>
           {/* <div className="landing-image">
-					<img src={landingImage} alt="" />
-				</div> */}
+                  <img src={landingImage} alt="" />
+              </div> */}
           <div className="landing-image">
             <img src={landingImage} alt="" />
           </div>
@@ -78,8 +64,6 @@ function Home() {
           </div>
         </div>
       </main>
-	  
->>>>>>> origin/master
     </>
   );
 }
