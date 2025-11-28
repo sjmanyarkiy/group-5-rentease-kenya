@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NavBar from '../pages/NavBar'
 
 const initialState = {
   name: "",
@@ -79,6 +80,10 @@ function TenantForm({ tenant, onSubmit, onCancel }) {
   };
 
   return (
+    <>
+    <header>
+      <NavBar />
+    </header>
     <form onSubmit={handleSubmit} className="container mt-4 p-4 border rounded bg-light">
       <h3 className="mb-4">{tenant ? "Edit Tenant" : "Add Tenant"}</h3>
 
@@ -149,6 +154,7 @@ function TenantForm({ tenant, onSubmit, onCancel }) {
       <button type="submit" className="btn btn-success me-2">{tenant ? "Update Tenant" : "Add Tenant"}</button>
       {tenant && <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancel</button>}
     </form>
+    </>
   );
 }
 

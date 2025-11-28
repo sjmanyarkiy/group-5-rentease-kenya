@@ -1,12 +1,8 @@
 import React from "react";
-import NavBar from "../pages/NavBar";
 
 function TenantList({ tenants = [], onEdit, onDelete }) {
   return (
     <>
-    <header>
-      <NavBar />
-    </header>
     <main>
       <div className="row">
       {tenants.length === 0 ? (
