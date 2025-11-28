@@ -8,7 +8,7 @@ const initialState = {
   employmentStatus: "",
   employerName: "",
   moveInDate: "",
-  tenantPhoto: null,
+  tenantPhoto: null, // File object
   propertyId: "",
   numberOfBedrooms: "",
   country: "",
@@ -19,13 +19,13 @@ const initialState = {
   estate: "",
 };
 
-function TenantForm({ tenant, onSubmit, existingTenants = [] }) {
+function TenantForm({ tenant, onSubmit, onCancel }) {
   const [form, setForm] = useState(initialState);
   const [preview, setPreview] = useState(null);
 
   useEffect(() => {
     if (tenant) {
-      setForm({ ...tenant });
+      setForm(tenant);
       setPreview(tenant.tenantPhoto || null);
     } else {
       setForm(initialState);
@@ -33,27 +33,48 @@ function TenantForm({ tenant, onSubmit, existingTenants = [] }) {
     }
   }, [tenant]);
 
+  useEffect(() => {
+    return () => {
+      if (preview && typeof preview === "string" && preview.startsWith("blob:")) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
+
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "tenantPhoto") {
-      const file = files[0];
-      setForm({ ...form, [name]: file });
+    const { name, value, files, type } = e.target;
+
+    if (type === "file") {
+      const file = files?.[0];
+      setForm(prev => ({ ...prev, [name]: file }));
       setPreview(file ? URL.createObjectURL(file) : null);
+    } else if (type === "number") {
+      setForm(prev => ({ ...prev, [name]: Number(value) }));
     } else {
-      setForm({ ...form, [name]: value });
+      setForm(prev => ({ ...prev, [name]: value }));
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const nextId = tenant
-      ? tenant.id
-      : existingTenants.length > 0
-        ? existingTenants[existingTenants.length - 1].id + 1
-        : 1;
 
-    onSubmit({ ...form, id: nextId });
-    setForm(initialState);
+    // Convert photo File to Base64 (optional, JSON-server can store as string)
+    if (form.tenantPhoto && form.tenantPhoto instanceof File) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const tenantData = { ...form, tenantPhoto: reader.result };
+        if (tenant) tenantData.id = tenant.id;
+        onSubmit(tenantData);
+        if (!tenant) setForm(initialState);
+      };
+      reader.readAsDataURL(form.tenantPhoto);
+    } else {
+      const tenantData = { ...form };
+      if (tenant) tenantData.id = tenant.id;
+      onSubmit(tenantData);
+      if (!tenant) setForm(initialState);
+    }
+
     setPreview(null);
   };
 
@@ -61,7 +82,6 @@ function TenantForm({ tenant, onSubmit, existingTenants = [] }) {
     <form onSubmit={handleSubmit} className="container mt-4 p-4 border rounded bg-light">
       <h3 className="mb-4">{tenant ? "Edit Tenant" : "Add Tenant"}</h3>
 
-      {/* Row 1: Name, Phone, Email */}
       <div className="row">
         <div className="col-md-4 mb-3">
           <label className="form-label">Name</label>
@@ -77,7 +97,7 @@ function TenantForm({ tenant, onSubmit, existingTenants = [] }) {
         </div>
       </div>
 
-      {/* Row 2: Government ID, Employment Status, Employer Name */}
+      {/* Additional fields */}
       <div className="row">
         <div className="col-md-4 mb-3">
           <label className="form-label">Government ID No</label>
@@ -93,7 +113,6 @@ function TenantForm({ tenant, onSubmit, existingTenants = [] }) {
         </div>
       </div>
 
-      {/* Row 3: Move-in Date, Property ID, Number of Bedrooms */}
       <div className="row">
         <div className="col-md-4 mb-3">
           <label className="form-label">Move-in Date</label>
@@ -109,46 +128,26 @@ function TenantForm({ tenant, onSubmit, existingTenants = [] }) {
         </div>
       </div>
 
-      {/* Row 4: Location */}
+      {/* Location */}
       <div className="row">
-        <div className="col-md-3 mb-3">
-          <label className="form-label">Country</label>
-          <input name="country" className="form-control" value={form.country} onChange={handleChange} />
-        </div>
-        <div className="col-md-3 mb-3">
-          <label className="form-label">County</label>
-          <input name="county" className="form-control" value={form.county} onChange={handleChange} />
-        </div>
-        <div className="col-md-2 mb-3">
-          <label className="form-label">City</label>
-          <input name="city" className="form-control" value={form.city} onChange={handleChange} />
-        </div>
-        <div className="col-md-2 mb-3">
-          <label className="form-label">Sub-County</label>
-          <input name="subCounty" className="form-control" value={form.subCounty} onChange={handleChange} />
-        </div>
-        <div className="col-md-2 mb-3">
-          <label className="form-label">Sublocation</label>
-          <input name="sublocation" className="form-control" value={form.sublocation} onChange={handleChange} />
-        </div>
+        <div className="col-md-3 mb-3"><label>Country</label><input name="country" className="form-control" value={form.country} onChange={handleChange} /></div>
+        <div className="col-md-3 mb-3"><label>County</label><input name="county" className="form-control" value={form.county} onChange={handleChange} /></div>
+        <div className="col-md-2 mb-3"><label>City</label><input name="city" className="form-control" value={form.city} onChange={handleChange} /></div>
+        <div className="col-md-2 mb-3"><label>Sub-County</label><input name="subCounty" className="form-control" value={form.subCounty} onChange={handleChange} /></div>
+        <div className="col-md-2 mb-3"><label>Sublocation</label><input name="sublocation" className="form-control" value={form.sublocation} onChange={handleChange} /></div>
       </div>
 
-      {/* Row 5: Estate and Tenant Photo */}
       <div className="row">
+        <div className="col-md-6 mb-3"><label>Estate</label><input name="estate" className="form-control" value={form.estate} onChange={handleChange} /></div>
         <div className="col-md-6 mb-3">
-          <label className="form-label">Estate</label>
-          <input name="estate" className="form-control" value={form.estate} onChange={handleChange} />
-        </div>
-        <div className="col-md-6 mb-3">
-          <label className="form-label">Tenant Photo</label>
+          <label>Tenant Photo</label>
           <input type="file" name="tenantPhoto" className="form-control" onChange={handleChange} />
           {preview && <img src={preview} alt="Preview" className="img-fluid mt-2 rounded" />}
         </div>
       </div>
 
-      <button type="submit" className="btn btn-success mt-2">
-        {tenant ? "Update Tenant" : "Add Tenant"}
-      </button>
+      <button type="submit" className="btn btn-success me-2">{tenant ? "Update Tenant" : "Add Tenant"}</button>
+      {tenant && <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancel</button>}
     </form>
   );
 }
