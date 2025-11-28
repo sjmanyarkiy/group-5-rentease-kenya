@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function AddPropertyForm({ onAdd }) {
-  const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
+  const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
   const [form, setForm] = useState({
     location: '',
     image: '',

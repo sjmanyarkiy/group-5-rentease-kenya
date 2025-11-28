@@ -121,6 +121,16 @@
       "bathrooms": 2,
       "status": "vacant",
       "description": "Family-friendly 3-bedroom house in Mavoko."
+    },
+    {
+      "id": "cdc5",
+      "location": "Mombasa",
+      "image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "rent": 50000,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "status": "vacant",
+      "description": "A beautiful three bedroom villa location along the coast of Mombasa"
     }
   ],
   "bookings": [

@@ -10,22 +10,18 @@ function PropertyItem({ property }) {
   return (
     <>
     <main>
-            <div className="col">
-                <div className="card" style={{width: "18rem"}}>
-                <img src={image} className="card-img-top" alt={location} />
-                <div className="card-body">
-                    <h5 className="card-title">{location}</h5>
-                  <p className="card-text">{description}</p>
-                  <p className="card-text"><strong>Rent:</strong> KES {rent}</p>
-                  <p className="card-text">{bedrooms} bed • {bathrooms} bath • <em>{status}</em></p>
-                    {/* Navigate to the property details route */}
-                    <p className="card-text">{description}</p>
-                    {/* <a href="#" className="btn btn-primary">View property</a> */}
-                    <Link to={`/properties/${id}`} className="btn btn-primary">View property</Link>
-                </div>
-                </div>
-            </div>
-
+      <div className="col">
+        <div className="card" style={{ width: "18rem" }}>
+          <img src={image} className="card-img-top" alt={location} />
+          <div className="card-body">
+            <h5 className="card-title">{location}</h5>
+            <p className="card-text">{description}</p>
+            <p className="card-text"><strong>Rent:</strong> KES {rent}</p>
+            <p className="card-text">{bedrooms} bed • {bathrooms} bath • <em>{status}</em></p>
+            <Link to={`/properties/${id}`} className="btn btn-primary">View property</Link>
+          </div>
+        </div>
+      </div>
 
     </main>
     

@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../pages/NavBar";
 import PropertyItem from "./PropertyItem";
+import AddPropertyForm from "./AddPropertyForm";
 import { Oval } from "react-loader-spinner";
 import { useLocation } from "react-router-dom";
 
 function PropertyList() {
   const [properties, setProperties] = useState([]);
-  const [ searchTerm, setSearchTerm ] = useState(""); 
+  const [ searchTerm, setSearchTerm ] = useState("");
+  // Default to localhost:3000 if REACT_APP_API_URL is not set
+ const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
+ // derive location filter from URL query param `location`, e.g. /properties?location=nairobi
+ const { search } = useLocation()
+ const params = new URLSearchParams(search) 
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const locationFilter = queryParams.get("location")?.toLowerCase() || "";
+  const locationFilter = (params.get('location') || '').toLowerCase()
+
 
   useEffect(() => {
-    fetch(`http://localhost:5000/properties`)
+    fetch(`${API}/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       .catch((error) => console.error(error));
-  }, []);
+  }, [API]);
+
+
 
   const filteredProperties = properties.filter((property) =>{ 
     const matchesLocation = property.location.toLowerCase().includes(locationFilter);
@@ -35,14 +44,21 @@ function PropertyList() {
   ));
 
 
+  function handleAddProperty(newProperty) {
+   // keep local state in sync after successful POST from AddPropertyForm
+   setProperties((prev) => [...prev, newProperty])
+ }
+
+
 
   return (
     <>
       <header>
         <NavBar />
       </header>
+      <div className="container my-4"><h2 className="justify-content-center text-3xl font-bold mb-8 text-gray-800">Explore Latest Properties</h2></div>
       <main>
-        <div className="container my-4"><h2 className="justify-content-center text-3xl font-bold mb-8 text-gray-800">Explore Properties</h2></div>
+        {/* Search */}
        <div className="container my-4">
           <div className="row justify-content-center">
             <div className="col-md-8">
@@ -87,6 +103,11 @@ function PropertyList() {
             </div>
           </div>
         </div>
+        {/* Adding Form */}
+       <div className="mt-3 container my-4">
+         <AddPropertyForm onAdd={handleAddProperty} />
+       </div>
+
         
         {/* Spinner */}
         {properties.length === 0 ? (

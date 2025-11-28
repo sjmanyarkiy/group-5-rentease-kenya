@@ -9,7 +9,6 @@ import routes from './routes'
 import { BookingsProvider } from './context/BookingsContext'
 import "font-awesome/css/font-awesome.min.css";
 
-
 const router = createBrowserRouter(routes);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
