@@ -28,17 +28,11 @@ function App() {
       </div>
     );
   } catch (err) {
-    // Fallback: render simple Home with NavBar so tests can find header text.
-    // eslint-disable-next-line global-require
-    const NavBar = require('./pages/NavBar').default;
+    // Fallback: render Home only. Home already renders NavBar itself,
+    // so rendering NavBar here caused duplicate headers in test environments.
     return (
       <div className="App">
-        <header>
-          <NavBar />
-        </header>
-        <main>
-          <Home />
-        </main>
+        <Home />
       </div>
     );
   }
