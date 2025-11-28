@@ -8,7 +8,9 @@
       "bedrooms": 2,
       "bathrooms": 1,
       "status": "vacant",
-      "description": "Modern 2-bedroom apartment in Kilimani with ample parking."
+      "description": "Modern 2-bedroom apartment in Kilimani with ample parking.",
+      "occupied": true,
+      "tenantId": "daec"
     },
     {
       "id": "2",
@@ -130,7 +132,7 @@
       "income": 65000,
       "moveInDate": "2025-02-10",
       "emergencyContact": "0712345678",
-      "status": "pending"
+      "status": "approved"
     },
     {
       "id": "2",
@@ -150,7 +152,7 @@
       "income": 72000,
       "moveInDate": "2025-02-15",
       "emergencyContact": "0788996655",
-      "status": "pending"
+      "status": "approved"
     },
     {
       "id": "4",
@@ -194,6 +196,11 @@
       "propertyId": 7,
       "moveInDate": "2025-02-20",
       "phone": "0711002233"
+    },
+    {
+      "id": "daec",
+      "name": "Mary Atieno",
+      "propertyId": 1
     }
   ]
 }

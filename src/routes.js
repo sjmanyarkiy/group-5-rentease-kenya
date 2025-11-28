@@ -4,8 +4,8 @@ import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
 import TenantsPage from './pages/TenantsPage';
+import BookingList from './components/BookingList'; // capital L
 
-import BookingList from './components/Bookinglist'; // <-- FIXED
 import AddNewForm from './components/AddNewForm';
 
 const routes = [

@@ -1,14 +1,14 @@
-import React from 'react'
-// import Bookinglist from './Bookinglist'
+import React from 'react';
+import BookingList from './components/BookingList';
 
-
-const Dashboard = () =>{
+const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard</h1>
-    
+      <BookingList />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
+
