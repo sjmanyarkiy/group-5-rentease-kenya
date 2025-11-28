@@ -7,9 +7,15 @@ import { useLocation } from "react-router-dom";
 
 function PropertyList() {
   const [properties, setProperties] = useState([]);
+  // Default to localhost:3000 if REACT_APP_API_URL is not set
+  const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
+  // derive location filter from URL query param `location`, e.g. /properties?location=nairobi
+  const { search } = useLocation()
+  const params = new URLSearchParams(search)
+  const locationFilter = (params.get('location') || '').toLowerCase()
 
   useEffect(() => {
-    fetch(`http://localhost:3000/properties`)
+    fetch(`${API}/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       // .then(data => console.log(data))
@@ -22,7 +28,7 @@ function PropertyList() {
   }
 
   const filteredProperties = properties.filter((property) =>
-  property.location.toLowerCase().includes(locationFilter)
+    (property.location || '').toLowerCase().includes(locationFilter)
   );
 
   const displayProperties = filteredProperties.map((property) => (
