@@ -6,12 +6,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import routes from './routes'
-<<<<<<< HEAD
 import { BookingsProvider } from './context/BookingsContext'
-=======
 import "font-awesome/css/font-awesome.min.css";
 
->>>>>>> origin/master
 
 const router = createBrowserRouter(routes);
 
@@ -21,6 +18,10 @@ root.render(
     <RouterProvider router={router} />
   </BookingsProvider>
 );
+// root.render(
+
+//     <RouterProvider router={router} />
+// );
 
 
 reportWebVitals();

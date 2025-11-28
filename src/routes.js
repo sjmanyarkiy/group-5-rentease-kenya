@@ -2,7 +2,6 @@ import PropertyList from './components/PropertyList';
 import Home from './pages/Home';
 import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
-import BookingsList from './components/BookingsList';
 import ErrorPage from "./pages/ErrorPage";
 import TenantsPage from './pages/TenantsPage';
 import BookingList from './components/BookingList'; // capital L
@@ -27,7 +26,7 @@ const routes = [
     },
     {
         path: "/bookings",
-        element: <BookingsList />,
+        element: <BookingList />,
         errorElement: <ErrorPage />
     },
     {

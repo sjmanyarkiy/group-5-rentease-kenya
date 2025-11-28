@@ -142,7 +142,7 @@
       "income": 50000,
       "moveInDate": "2025-03-01",
       "emergencyContact": "0798765432",
-      "status": "pending"
+      "status": "rejected"
     },
     {
       "id": "3",
@@ -201,6 +201,25 @@
       "id": "daec",
       "name": "Mary Atieno",
       "propertyId": 1
+    },
+    {
+      "id": "87aa",
+      "name": "Jane Doe",
+      "phone": "071234567",
+      "email": "jane@gmail.com",
+      "govtIDNo": "43534534543",
+      "employmentStatus": "Employed",
+      "employerName": "ABC ltd",
+      "moveInDate": "2025-11-05",
+      "tenantPhoto": null,
+      "propertyId": 2,
+      "numberOfBedrooms": 2,
+      "country": "Kenya",
+      "county": "Nairobi",
+      "city": "Nairobi",
+      "subCounty": "",
+      "sublocation": "",
+      "estate": ""
     }
   ]
 }
