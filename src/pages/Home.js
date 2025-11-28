@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NavBar from "../pages/NavBar";
-import landingImage from "../img/landing.jpg";
+import landingImage from "../img/landing7.jpg";
 import "font-awesome/css/font-awesome.min.css";
 import Apartment from "../components/Home/Apartment";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +27,7 @@ function Home() {
             </div>
             <div className="search-bar">
               <input type="text" placeholder="Search Location " value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-              <button onClick={handleSearch}>Search</button>
+              <button type="button" class="btn-primary" onClick={handleSearch}>Search</button>
             </div>
           </div>
           {/* <div className="landing-image">
@@ -40,7 +40,7 @@ function Home() {
             <div className="phone">
               <p>
                 <i className="fa fa-phone" aria-hidden="true"></i>{" "}
-                <span>(+254)7 2496 6748</span>
+                <span>(+254)7 1234 567</span>
               </p>
             </div>
             <div>
