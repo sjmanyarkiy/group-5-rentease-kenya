@@ -1,8 +1,14 @@
 import React from "react";
+import NavBar from "../pages/NavBar";
 
 function TenantList({ tenants = [], onEdit, onDelete }) {
   return (
-    <div className="row">
+    <>
+    <header>
+      <NavBar />
+    </header>
+    <main>
+      <div className="row">
       {tenants.length === 0 ? (
         <p className="text-center">No tenants found.</p>
       ) : (
@@ -31,6 +37,8 @@ function TenantList({ tenants = [], onEdit, onDelete }) {
         ))
       )}
     </div>
+    </main>
+    </>
   );
 }
 
