@@ -28,7 +28,10 @@ RentEase Kenya transforms manual rental processes into a centralized digital sys
 - Automatic property status updates and tenant record creation.
 
 ## 🧩 Tech Stack
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 - **React.js**
 - **React Router**
 - **Context API / useState / useEffect**

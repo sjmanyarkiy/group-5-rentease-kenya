@@ -3,14 +3,13 @@ import NavBar from "../pages/NavBar";
 import PropertyItem from "./PropertyItem";
 import AddPropertyForm from "./AddPropertyForm";
 import { Oval } from "react-loader-spinner";
+import { useLocation } from "react-router-dom";
 
 function PropertyList() {
   const [properties, setProperties] = useState([]);
-  // Default to localhost:3000 if REACT_APP_API_URL is not set
-  const API = process.env.REACT_APP_API_URL || 'http://localhost:3000'
 
   useEffect(() => {
-    fetch(`${API}/properties`)
+    fetch(`http://localhost:3000/properties`)
       .then((res) => res.json())
       .then((data) => setProperties(data))
       // .then(data => console.log(data))
@@ -22,9 +21,15 @@ function PropertyList() {
     setProperties((prev) => [...prev, newProperty])
   }
 
-  const displayProperties = properties.map((property) => {
-    return <PropertyItem key={property.id} property={property} />;
-  });
+  const filteredProperties = properties.filter((property) =>
+  property.location.toLowerCase().includes(locationFilter)
+  );
+
+  const displayProperties = filteredProperties.map((property) => (
+    <PropertyItem key={property.id} property={property} />
+  ));
+
+
 
   return (
     <>

@@ -4,6 +4,10 @@ import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
 import BookingsList from './components/BookingsList';
 import ErrorPage from "./pages/ErrorPage";
+import TenantsPage from './pages/TenantsPage';
+import BookingList from './components/BookingList'; // capital L
+
+import AddNewForm from './components/AddNewForm';
 
 const routes = [
     {
@@ -28,10 +32,19 @@ const routes = [
     },
     {
         path: "/tenants",
-        element: <TenantList />,
+        element: <TenantsPage />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: "/bookings",
+        element: <BookingList />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: "/add-new-form",
+        element: <AddNewForm />,
         errorElement: <ErrorPage />
     }
-
-]
+];
 
 export default routes;
