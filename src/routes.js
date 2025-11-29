@@ -7,6 +7,7 @@ import TenantsPage from './pages/TenantsPage';
 import BookingList from './components/BookingList'; // capital L
 import BookingRequestForm from './components/BookingRequestForm';
 import AddNewForm from './components/AddNewForm';
+import Dashboard from './components/Dashboard';
 
 const routes = [
     {
@@ -48,8 +49,12 @@ const routes = [
 {
   path: "/request-booking",
   element: <BookingRequestForm />,
-}
+},
 
+{
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
 
 ];
 

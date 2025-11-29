@@ -1,69 +1,87 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BookingRequestForm = () => {
   const [tenants, setTenants] = useState([]);
   const [properties, setProperties] = useState([]);
   const [selectedTenant, setSelectedTenant] = useState("");
   const [selectedProperty, setSelectedProperty] = useState("");
-  const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
+  // Fetch tenants and properties on mount
   useEffect(() => {
     fetch("http://localhost:5000/tenants")
       .then((res) => res.json())
-      .then((data) => setTenants(data));
+      .then((data) => setTenants(data))
+      .catch((err) => console.error("Failed to fetch tenants:", err));
 
     fetch("http://localhost:5000/properties")
       .then((res) => res.json())
-      .then((data) => setProperties(data));
+      .then((data) => setProperties(data))
+      .catch((err) => console.error("Failed to fetch properties:", err));
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate selections
     if (!selectedTenant || !selectedProperty) {
-      alert("Please select a tenant and a property");
+      alert("Please select both a tenant and a property");
       return;
     }
 
-    setLoading(true);
+    // Find tenant and property safely
+    const tenant = tenants.find((t) => String(t.id) === String(selectedTenant));
+    const property = properties.find(
+      (p) => String(p.id) === String(selectedProperty)
+    );
 
-    const tenant = tenants.find(t => t.id === Number(selectedTenant));
-    const property = properties.find(p => p.id === Number(selectedProperty));
+    if (!tenant || !property) {
+      alert("Selected tenant or property not found");
+      return;
+    }
 
     const newBooking = {
       tenantId: tenant.id,
       tenantName: tenant.name,
       propertyId: property.id,
-      status: "pending"
+      status: "pending",
     };
 
-    const res = await fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newBooking),
-    });
+    try {
+      const res = await fetch("http://localhost:5000/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newBooking),
+      });
 
-    setLoading(false);
+      if (res.ok) {
+        alert("Booking request submitted!");
+        setSelectedTenant("");
+        setSelectedProperty("");
 
-    if (res.ok) {
-      alert("Booking request submitted!");
-      setSelectedTenant("");
-      setSelectedProperty("");
+        // Redirect to Dashboard to see updated bookings
+        navigate("/dashboard");
+      } else {
+        alert("Failed to submit booking request");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error submitting booking request");
     }
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "500px" }}>
-      <h2>Create Booking Request</h2>
-
+    <div style={{ padding: "20px" }}>
+      <h2>New Booking Request</h2>
       <form onSubmit={handleSubmit}>
-
-        {/* Select Tenant */}
-        <div style={{ marginBottom: "15px" }}>
+        <div style={{ marginBottom: "10px" }}>
           <label>Tenant:</label>
           <select
             value={selectedTenant}
             onChange={(e) => setSelectedTenant(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
+            style={{ marginLeft: "10px", padding: "5px" }}
           >
             <option value="">-- Select Tenant --</option>
             {tenants.map((t) => (
@@ -74,13 +92,12 @@ const BookingRequestForm = () => {
           </select>
         </div>
 
-        {/* Select Property */}
-        <div style={{ marginBottom: "15px" }}>
+        <div style={{ marginBottom: "10px" }}>
           <label>Property:</label>
           <select
             value={selectedProperty}
             onChange={(e) => setSelectedProperty(e.target.value)}
-            style={{ width: "100%", padding: "8px" }}
+            style={{ marginLeft: "10px", padding: "5px" }}
           >
             <option value="">-- Select Property --</option>
             {properties.map((p) => (
@@ -93,7 +110,6 @@ const BookingRequestForm = () => {
 
         <button
           type="submit"
-          disabled={loading}
           style={{
             padding: "10px 15px",
             backgroundColor: "#007bff",
@@ -101,14 +117,13 @@ const BookingRequestForm = () => {
             border: "none",
             borderRadius: "5px",
             cursor: "pointer",
-            width: "100%",
           }}
         >
-          {loading ? "Submitting..." : "Submit Booking Request"}
+          Submit Booking Request
         </button>
       </form>
     </div>
   );
-};
+}
 
 export default BookingRequestForm;

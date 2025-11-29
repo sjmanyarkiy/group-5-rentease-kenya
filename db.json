@@ -183,6 +183,20 @@
       "moveInDate": "2025-01-20",
       "emergencyContact": "0744556677",
       "status": "rejected"
+    },
+    {
+      "id": "e603",
+      "tenantId": "2",
+      "tenantName": "Grace Njeri",
+      "propertyId": "7",
+      "status": "pending"
+    },
+    {
+      "id": "8008",
+      "tenantId": "3",
+      "tenantName": "James Mutiso",
+      "propertyId": "4",
+      "status": "pending"
     }
   ],
   "tenants": [
@@ -230,6 +244,25 @@
       "subCounty": "",
       "sublocation": "",
       "estate": ""
+    },
+    {
+      "id": "22b2",
+      "name": "Ajok deng",
+      "phone": "+254748071005",
+      "email": "ajok.deng@student.moringaschool.com",
+      "govtIDNo": "237909794",
+      "employmentStatus": "Employed",
+      "employerName": "Yai P Y Deng",
+      "moveInDate": "2025-11-15",
+      "tenantPhoto": null,
+      "propertyId": 12,
+      "numberOfBedrooms": 4,
+      "country": "Kenya",
+      "county": "Nairobi",
+      "city": "Nairobi",
+      "subCounty": "Parklands",
+      "sublocation": "gjjldkalhks",
+      "estate": "Century Apartments"
     }
   ]
 }

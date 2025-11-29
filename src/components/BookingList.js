@@ -18,13 +18,13 @@ const BookingList = () => {
       .then((data) => setProperties(data));
   }, []);
 
-  // Get property location
+  // Get property name
   const getPropertyName = (id) => {
     const prop = properties.find((p) => String(p.id) === String(id));
     return prop ? prop.location : "Unknown";
   };
 
-  // Handle Approve
+  // Approve booking
   const handleApprove = async (booking) => {
     const res = await fetch(`http://localhost:5000/bookings/${booking.id}`, {
       method: "PATCH",
@@ -41,7 +41,7 @@ const BookingList = () => {
     }
   };
 
-  // Handle Reject
+  // Reject booking
   const handleReject = async (booking) => {
     const res = await fetch(`http://localhost:5000/bookings/${booking.id}`, {
       method: "PATCH",
@@ -67,124 +67,133 @@ const BookingList = () => {
 
   return (
     <>
-    <header>
-      <NavBar />
-    </header>
-    <main>
-      <div style={{ padding: "20px" }}>
-      <h2>Bookings</h2>
+      <header>
+        <NavBar />
+      </header>
+      <main style={{ padding: "20px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
+          <h2>Bookings</h2>
+          <Link to="/request-booking">
+            <button style={{ padding: "10px 15px", backgroundColor: "#007bff", color: "white", border: "none", borderRadius: "5px" }}>
+              New Booking Request
+            </button>
+          </Link>
+        </div>
 
-      {/* Status Filter Buttons */}
-      <div style={{ marginBottom: "15px" }}>
-        {["all", "pending", "approved", "rejected"].map((status) => (
-          <button
-            key={status}
-            onClick={() => setSelectedStatus(status)}
-            style={{
-              marginRight: "10px",
-              padding: "5px 10px",
-              backgroundColor:
-                selectedStatus === status ? "#007bff" : "#e0e0e0",
-              color: selectedStatus === status ? "white" : "black",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            {status.charAt(0).toUpperCase() + status.slice(1)}
-          </button>
-        ))}
-      </div>
+        {/* Status Filter Buttons */}
+        <div style={{ marginBottom: "15px" }}>
+          {["all", "pending", "approved", "rejected"].map((status) => (
+            <button
+              key={status}
+              onClick={() => setSelectedStatus(status)}
+              style={{
+                marginRight: "10px",
+                padding: "5px 10px",
+                backgroundColor:
+                  selectedStatus === status ? "#007bff" : "#e0e0e0",
+                color: selectedStatus === status ? "white" : "black",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
+            >
+              {status.charAt(0).toUpperCase() + status.slice(1)}
+            </button>
+          ))}
+        </div>
 
-      {/* Bookings Table */}
-      <table style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Tenant</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Property</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Status</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {properties.length === 0 ? (
+        {/* Bookings Table */}
+        <table style={{ borderCollapse: "collapse", width: "100%" }}>
+          <thead>
             <tr>
-              <td colSpan="4" style={{ padding: "8px", textAlign: "center" }}>
-                Loading properties...
-              </td>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Tenant</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Property</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Status</th>
+              <th style={{ border: "1px solid #ddd", padding: "8px" }}>Action</th>
             </tr>
-          ) : filteredBookings.length === 0 ? (
-            <tr>
-              <td colSpan="4" style={{ padding: "8px", textAlign: "center" }}>
-                No bookings found
-              </td>
-            </tr>
-          ) : (
-            filteredBookings.map((b) => (
-              <tr key={b.id}>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {b.tenantName}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  {/* Link to PropertyDetail page */}
-                  <Link
-                    to={`/properties/${b.propertyId}`}
-                    style={{ textDecoration: "none", color: "#007bff" }}
-                  >
-                    {getPropertyName(b.propertyId)}
-                  </Link>
-                </td>
-                <td
-                  style={{
-                    border: "1px solid #ddd",
-                    padding: "8px",
-                    fontWeight: "bold",
-                    color:
-                      b.status === "approved"
-                        ? "green"
-                        : b.status === "rejected"
-                        ? "red"
-                        : "orange",
-                  }}
-                >
-                  {b.status.charAt(0).toUpperCase() + b.status.slice(1)}
-                </td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                  <button
-                    onClick={() => handleApprove(b)}
-                    disabled={b.status !== "pending"}
-                    style={{
-                      marginRight: "10px",
-                      padding: "5px 10px",
-                      backgroundColor:
-                        b.status === "approved" ? "green" : "#e0ffe0",
-                      border: "1px solid green",
-                      cursor: b.status === "pending" ? "pointer" : "not-allowed",
-                    }}
-                  >
-                    Approve
-                  </button>
-                  <button
-                    onClick={() => handleReject(b)}
-                    disabled={b.status !== "pending"}
-                    style={{
-                      padding: "5px 10px",
-                      backgroundColor:
-                        b.status === "rejected" ? "red" : "#ffe0e0",
-                      border: "1px solid red",
-                      cursor: b.status === "pending" ? "pointer" : "not-allowed",
-                    }}
-                  >
-                    Reject
-                  </button>
+          </thead>
+          <tbody>
+            {properties.length === 0 ? (
+              <tr>
+                <td colSpan="4" style={{ padding: "8px", textAlign: "center" }}>
+                  Loading properties...
                 </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-    </div>
-    </main>
+            ) : filteredBookings.length === 0 ? (
+              <tr>
+                <td colSpan="4" style={{ padding: "8px", textAlign: "center" }}>
+                  No bookings found
+                </td>
+              </tr>
+            ) : (
+              filteredBookings.map((b, index) => (
+                <tr
+                  key={b.id}
+                  style={{
+                    backgroundColor: index % 2 === 0 ? "#f9f9f9" : "white"
+                  }}
+                >
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    {b.tenantName}
+                  </td>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    <Link
+                      to={`/properties/${b.propertyId}`}
+                      style={{ textDecoration: "none", color: "#007bff" }}
+                    >
+                      {getPropertyName(b.propertyId)}
+                    </Link>
+                  </td>
+                  <td
+                    style={{
+                      border: "1px solid #ddd",
+                      padding: "8px",
+                      fontWeight: "bold",
+                      color:
+                        b.status === "approved"
+                          ? "green"
+                          : b.status === "rejected"
+                          ? "red"
+                          : "orange",
+                    }}
+                  >
+                    {b.status.charAt(0).toUpperCase() + b.status.slice(1)}
+                  </td>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    <button
+                      onClick={() => handleApprove(b)}
+                      disabled={b.status !== "pending"}
+                      style={{
+                        marginRight: "10px",
+                        padding: "5px 10px",
+                        backgroundColor:
+                          b.status === "approved" ? "green" : "#e0ffe0",
+                        border: "1px solid green",
+                        cursor: b.status === "pending" ? "pointer" : "not-allowed",
+                      }}
+                    >
+                      Approve
+                    </button>
+                    <button
+                      onClick={() => handleReject(b)}
+                      disabled={b.status !== "pending"}
+                      style={{
+                        padding: "5px 10px",
+                        backgroundColor:
+                          b.status === "rejected" ? "red" : "#ffe0e0",
+                        border: "1px solid red",
+                        cursor: b.status === "pending" ? "pointer" : "not-allowed",
+                      }}
+                    >
+                      Reject
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </main>
     </>
   );
 }
