@@ -5,7 +5,7 @@ import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
 import TenantsPage from './pages/TenantsPage';
 import BookingList from './components/BookingList'; // capital L
-
+import BookingRequestForm from './components/BookingRequestForm';
 import AddNewForm from './components/AddNewForm';
 
 const routes = [
@@ -43,7 +43,14 @@ const routes = [
         path: "/add-new-form",
         element: <AddNewForm />,
         errorElement: <ErrorPage />
-    }
+    },
+
+{
+  path: "/request-booking",
+  element: <BookingRequestForm />,
+}
+
+
 ];
 
 export default routes;

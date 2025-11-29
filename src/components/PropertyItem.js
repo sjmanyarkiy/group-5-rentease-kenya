@@ -1,14 +1,10 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function PropertyItem({ property }) {
-
-    const { id, location, image, rent, bedrooms, bathrooms, status, description } = property
-    console.log(id)
-
+  const { id, location, image, rent, bedrooms, bathrooms, status, description } = property;
 
   return (
-    <>
     <main>
       <div className="col">
         <div className="card" style={{ width: "18rem" }}>
@@ -22,11 +18,8 @@ function PropertyItem({ property }) {
           </div>
         </div>
       </div>
-
     </main>
-    
-    </>
-  )
+  );
 }
 
-export default PropertyItem
+export default PropertyItem;
