@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import NavBar from "../pages/NavBar";
-import landingImage from "../img/landing7.jpg";
+// import landingImage from "../img/landing7.jpg";
 import "font-awesome/css/font-awesome.min.css";
-import Apartment from "../components/Home/Apartment";
-import { useNavigate } from "react-router-dom";
+// import Apartment from "../components/Home/Apartment";
+// import { useNavigate } from "react-router-dom";
 
 // SafeLink: use react-router's Link when available; fall back to <a> for test environments
 function SafeLink({ to, children, ...rest }) {
@@ -19,12 +19,12 @@ function SafeLink({ to, children, ...rest }) {
 
 function Home() {
 
-   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
+  //  const [searchTerm, setSearchTerm] = useState("");
+  // const navigate = useNavigate();
 
-  function handleSearch() {
-    navigate(`/properties?location=${searchTerm}`);
-  }
+  // function handleSearch() {
+  //   navigate(`/properties?location=${searchTerm}`);
+  // }
 
   return (
     <>

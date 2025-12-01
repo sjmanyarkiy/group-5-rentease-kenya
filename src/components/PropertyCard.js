@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import NavBar from '../pages/NavBar'
-import { useBookings } from '../context/BookingsContext'
+// import { useBookings } from '../context/BookingsContext'
 
 function PropertyCard() {
   const { id } = useParams()
@@ -10,13 +10,13 @@ function PropertyCard() {
   const [error, setError] = useState(null)
 
   // booking form state
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [message, setMessage] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const { addBooking } = useBookings()
+  // const [name, setName] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [startDate, setStartDate] = useState('')
+  // const [endDate, setEndDate] = useState('')
+  // const [message, setMessage] = useState('')
+  // const [submitted, setSubmitted] = useState(false)
+  // const { addBooking } = useBookings()
 
   useEffect(() => {
     if (!id) return
@@ -33,55 +33,55 @@ function PropertyCard() {
       .finally(() => setLoading(false))
   }, [id])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Basic validation
-    if (!name || !email || !startDate || !endDate) {
-      alert('Please fill in name, email, start and end dates')
-      return
-    }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   // Basic validation
+  //   if (!name || !email || !startDate || !endDate) {
+  //     alert('Please fill in name, email, start and end dates')
+  //     return
+  //   }
 
-    const booking = {
-      propertyId: Number(id),
-      name,
-      email,
-      startDate,
-      endDate,
-      message,
-      status: 'pending',
-      createdAt: new Date().toISOString(),
-    }
+  //   const booking = {
+  //     propertyId: Number(id),
+  //     name,
+  //     email,
+  //     startDate,
+  //     endDate,
+  //     message,
+  //     status: 'pending',
+  //     createdAt: new Date().toISOString(),
+  //   }
 
-    const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
+  //   const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
 
-    fetch(`${API}/bookings`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(booking),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error('Booking failed')
-        return res.json()
-      })
-      .then((data) => {
-        // update global bookings state so UI can re-render
-        try {
-          addBooking(data)
-        } catch (err) {
-          // fall back: still set submitted if provider not available
-          console.warn('addBooking not available', err)
-        }
+  //   fetch(`${API}/bookings`, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(booking),
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) throw new Error('Booking failed')
+  //       return res.json()
+  //     })
+  //     .then((data) => {
+  //       // update global bookings state so UI can re-render
+  //       try {
+  //         addBooking(data)
+  //       } catch (err) {
+  //         // fall back: still set submitted if provider not available
+  //         console.warn('addBooking not available', err)
+  //       }
 
-        setSubmitted(true)
-        // clear form
-        setName('')
-        setEmail('')
-        setStartDate('')
-        setEndDate('')
-        setMessage('')
-      })
-      .catch((err) => alert(err.message))
-  }
+  //       setSubmitted(true)
+  //       // clear form
+  //       setName('')
+  //       setEmail('')
+  //       setStartDate('')
+  //       setEndDate('')
+  //       setMessage('')
+  //     })
+  //     .catch((err) => alert(err.message))
+  // }
 
   if (loading) return (
     <>
