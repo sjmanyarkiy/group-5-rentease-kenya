@@ -28,14 +28,9 @@ RentEase Kenya transforms manual rental processes into a centralized digital sys
 - Automatic property status updates and tenant record creation.
 
 ## 🧩 Tech Stack
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 - **React.js**
-- **React Router**
-- **Context API / useState / useEffect**
-- **ExchangeRate-API**
+- **JavaScript**
+- **CSS3**
 
 ## 🗂️ Project Structure
 
@@ -60,11 +55,16 @@ npm install
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To run the json server, open a new terminal and type
+```bash
+npx json-server db.json --port 5000
+```
+
+Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 
 ## 🎬 Demo
 
-Live Demo: [https://github.com/sjmanyarkiy/group-5-rentease-kenya](https://github.com/sjmanyarkiy/group-5-rentease-kenya)
+Live Demo: [https://renteasekenya.netlify.app/](https://renteasekenya.netlify.app/)
 
 ## 🌟 Why RentEase Kenya Stands Out
 
@@ -84,10 +84,7 @@ Live Demo: [https://github.com/sjmanyarkiy/group-5-rentease-kenya](https://githu
 
 ### Group 5 – SDF-PT12 Phase 2 Moringa School
 
-Scrum Master: **Sandra Manyarkiy**
-
-### Other Members
-
+- Sandra Manyarkiy - **Scrum Master**
 - Benson Mwangi
 - Ajok Yai
 - Samuel Emanman
