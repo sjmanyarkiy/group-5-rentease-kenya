@@ -65,7 +65,8 @@ Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 ## 🎬 Demo
 
 Live Link: [https://renteasekenya.netlify.app/](https://renteasekenya.netlify.app/)
-Live Demo:[https://youtu.be/j3S6AlEZkds]
+
+Live Demo:[https://youtu.be/j3S6AlEZkds](https://youtu.be/j3S6AlEZkds)
 
 ## 🌟 Why RentEase Kenya Stands Out
 
