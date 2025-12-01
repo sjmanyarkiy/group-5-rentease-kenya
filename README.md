@@ -68,6 +68,8 @@ Live Link: [https://renteasekenya.netlify.app/](https://renteasekenya.netlify.ap
 
 Live Demo:[https://youtu.be/j3S6AlEZkds](https://youtu.be/j3S6AlEZkds)
 
+JSON Server (hosted on Render) - [https://github.com/sjmanyarkiy/rentease-json-server](https://github.com/sjmanyarkiy/rentease-json-server)
+
 ## 🌟 Why RentEase Kenya Stands Out
 
 - Built for the Kenyan market
