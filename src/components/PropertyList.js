@@ -13,6 +13,8 @@ function PropertyList() {
  // derive location filter from URL query param `location`, e.g. /properties?location=nairobi
  const { search } = useLocation()
  const params = new URLSearchParams(search) 
+ console.log("API URL:", API)
+
 
   // const location = useLocation();
   // const queryParams = new URLSearchParams(location.search);
