@@ -9,11 +9,11 @@ const BookingList = () => {
 
   // Fetch bookings and properties
   useEffect(() => {
-    fetch("http://localhost:5000/bookings")
+    fetch("https://rentease-json-server.onrender.com/bookings")
       .then((res) => res.json())
       .then((data) => setBookings(data));
 
-    fetch("http://localhost:5000/properties")
+    fetch("https://rentease-json-server.onrender.com/properties")
       .then((res) => res.json())
       .then((data) => setProperties(data));
   }, []);
@@ -26,7 +26,7 @@ const BookingList = () => {
 
   // Approve booking
   const handleApprove = async (booking) => {
-    const res = await fetch(`http://localhost:5000/bookings/${booking.id}`, {
+    const res = await fetch(`https://rentease-json-server.onrender.com/bookings/${booking.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "approved" }),
@@ -43,7 +43,7 @@ const BookingList = () => {
 
   // Reject booking
   const handleReject = async (booking) => {
-    const res = await fetch(`http://localhost:5000/bookings/${booking.id}`, {
+    const res = await fetch(`https://rentease-json-server.onrender.com/bookings/${booking.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: "rejected" }),

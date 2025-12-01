@@ -11,12 +11,12 @@ const BookingRequestForm = () => {
 
   // Fetch tenants and properties on mount
   useEffect(() => {
-    fetch("http://localhost:5000/tenants")
+    fetch("https://rentease-json-server.onrender.com/tenants")
       .then((res) => res.json())
       .then((data) => setTenants(data))
       .catch((err) => console.error("Failed to fetch tenants:", err));
 
-    fetch("http://localhost:5000/properties")
+    fetch("https://rentease-json-server.onrender.com/properties")
       .then((res) => res.json())
       .then((data) => setProperties(data))
       .catch((err) => console.error("Failed to fetch properties:", err));
@@ -50,7 +50,7 @@ const BookingRequestForm = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/bookings", {
+      const res = await fetch("https://rentease-json-server.onrender.com/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newBooking),

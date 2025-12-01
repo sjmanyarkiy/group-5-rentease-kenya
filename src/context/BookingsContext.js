@@ -4,7 +4,7 @@ const BookingsContext = createContext()
 
 export function BookingsProvider({ children }) {
   // Default to localhost:3000 if REACT_APP_API_URL is not provided
-  const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
+  const API = process.env.REACT_APP_API_URL || 'https://rentease-json-server.onrender.com'
   const [bookings, setBookings] = useState([])
   const [loading, setLoading] = useState(true)
 

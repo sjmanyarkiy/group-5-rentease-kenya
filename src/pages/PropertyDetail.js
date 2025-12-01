@@ -10,7 +10,7 @@ const PropertyDetail = () => {
     const fetchProperty = async () => {
       try {
         // Make sure this matches the port your JSON server is running on
-        const res = await axios.get(`http://localhost:5000/properties/${id}`);
+        const res = await axios.get(`https://rentease-json-server.onrender.com/properties/${id}`);
         setProperty(res.data);
       } catch (err) {
         console.error(err);

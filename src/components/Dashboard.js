@@ -8,7 +8,7 @@ const Dashboard = () => {
 
   // Fetch bookings
   const fetchBookings = () => {
-    fetch("http://localhost:5000/bookings")
+    fetch("https://rentease-json-server.onrender.com/bookings")
       .then((res) => res.json())
       .then((data) => setBookings(data))
       .catch((err) => console.error("Failed to fetch bookings:", err));
@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   // Fetch properties
   const fetchProperties = () => {
-    fetch("http://localhost:5000/properties")
+    fetch("https://rentease-json-server.onrender.com/properties")
       .then((res) => res.json())
       .then((data) => setProperties(data))
       .catch((err) => console.error("Failed to fetch properties:", err));

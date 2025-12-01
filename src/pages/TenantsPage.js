@@ -15,7 +15,7 @@ function TenantsPage() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/tenants")
+    fetch("https://rentease-json-server.onrender.com/tenants")
       .then((res) => res.json())
       .then((data) => setTenants(data))
       .catch((err) => console.error("Failed to load tenants", err));
@@ -23,7 +23,7 @@ function TenantsPage() {
 
   const handleAddOrUpdateTenant = (tenantData) => {
     if (editingTenant) {
-      fetch(`http://localhost:5000/tenants/${editingTenant.id}`, {
+      fetch(`https://rentease-json-server.onrender.com/tenants/${editingTenant.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tenantData),
@@ -34,7 +34,7 @@ function TenantsPage() {
           setEditingTenant(null);
         });
     } else {
-      fetch("http://localhost:5000/tenants", {
+      fetch("https://rentease-json-server.onrender.com/tenants", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(tenantData),
@@ -46,7 +46,7 @@ function TenantsPage() {
 
   const handleEdit = (tenant) => setEditingTenant(tenant);
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/tenants/${id}`, { method: "DELETE" })
+    fetch(`https://rentease-json-server.onrender.com/tenants/${id}`, { method: "DELETE" })
       .then(() => setTenants(tenants.filter((t) => t.id !== id)));
   };
   const handleCancelEdit = () => setEditingTenant(null);

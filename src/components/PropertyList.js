@@ -9,7 +9,7 @@ function PropertyList() {
   const [properties, setProperties] = useState([]);
   const [ searchTerm, setSearchTerm ] = useState("");
   // Default to localhost:3000 if REACT_APP_API_URL is not set
- const API = process.env.REACT_APP_API_URL || 'http://localhost:5000'
+ const API = process.env.REACT_APP_API_URL || 'https://rentease-json-server.onrender.com'
  // derive location filter from URL query param `location`, e.g. /properties?location=nairobi
  const { search } = useLocation()
  const params = new URLSearchParams(search) 
