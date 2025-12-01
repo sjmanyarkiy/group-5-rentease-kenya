@@ -69,7 +69,7 @@ Live Link: [https://renteasekenya.netlify.app/](https://renteasekenya.netlify.ap
 Live Demo:[https://youtu.be/j3S6AlEZkds](https://youtu.be/j3S6AlEZkds)
 
 
-<video src='https://youtu.be/j3S6AlEZkds' width=180/>
+<video src='https://youtu.be/j3S6AlEZkds' width=180></video>
 
 
 JSON Server (hosted on Render) - [https://github.com/sjmanyarkiy/rentease-json-server](https://github.com/sjmanyarkiy/rentease-json-server)
