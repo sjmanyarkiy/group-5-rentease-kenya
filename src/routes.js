@@ -1,6 +1,6 @@
 import PropertyList from './components/PropertyList';
 import Home from './pages/Home';
-import TenantList from './components/TenantList';
+// import TenantList from './components/TenantList';
 import PropertyCard from './components/PropertyCard';
 import ErrorPage from "./pages/ErrorPage";
 import TenantsPage from './pages/TenantsPage';

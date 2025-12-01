@@ -14,8 +14,8 @@ function PropertyList() {
  const { search } = useLocation()
  const params = new URLSearchParams(search) 
 
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
   const locationFilter = (params.get('location') || '').toLowerCase()
 
 
