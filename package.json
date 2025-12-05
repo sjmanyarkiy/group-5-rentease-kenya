@@ -47,6 +47,11 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^react-router-dom$": "<rootDir>/src/test-mocks/react-router-dom.js"
+    }
+  },
   "devDependencies": {
     "json-server": "^1.0.0-beta.3"
   }
